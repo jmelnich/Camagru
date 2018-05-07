@@ -1,0 +1,32 @@
+{
+  "name": "camagru",
+  "version": "1.0.0",
+  "description": "Project of school 42: small web application allowing you to make basic photo and video editing using your webcam and some predefined images.",
+  "main": "index.php",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmelnich/Camagru.git"
+  },
+  "author": "imelnych",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jmelnich/Camagru/issues"
+  },
+  "homepage": "https://github.com/jmelnich/Camagru#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "browser-sync": "^2.24.4",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.9.4",
+    "gulp-concat": "^2.6.1",
+    "gulp-connect-php": "^1.0.3",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^4.0.1",
+    "gulp-scss": "^1.4.0",
+    "gulp-uglifyjs": "^0.6.2"
+  }
+}
