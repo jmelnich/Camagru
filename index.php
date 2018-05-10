@@ -1,10 +1,13 @@
 <?php
-$page_title='Home page';
-include('includes/header.php');
-?>
+ini_set(display_errors, 1);
+error_reporting(E_ALL);
 
-Home page
+define('ROOT', dirname(__FILE__));
+require_once(ROOT . '/components/Router.php');
 
-<?php
-include('includes/footer.php');
+$router = new Router();
+$router->add('/');
+$router->add('/login');
+$router->add('/signup');
+$router->run();
 ?>
