@@ -27,16 +27,24 @@ class Router
 		}
 	}
 
-	public function run () {
+	public function run () { //управления от front-контроллера (index.php)
 		$uri = $this->getURI();
 		foreach ($this->_uriCollection as $key => $value) {
 			if (preg_match("#^$value$#", $uri)) {
-				$useMethod = $this->_methodCollection[$key];
-				new $useMethod();
+				$methodName = $this->_methodCollection[$key]; //определение name контроллера
+				$controllerFile = ROOT . '/controllers/' . $methodName . '.php';
+				if (file_exists($controllerFile)) {
+					include_once($controllerFile);
+				}
+				$controllerObj = new $methodName();
 				return true;
 			}
 		}
-		$useMethod = 'NotFound';
-		new $useMethod();
+		$controllerFile = ROOT . '/controllers/NotFound.php';
+			if (file_exists($controllerFile)) {
+				include_once($controllerFile);
+			}
+			$methodName = 'NotFound';
+			$controllerObj = new $methodName();
 	}
 }

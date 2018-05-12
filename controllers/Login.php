@@ -1,13 +1,17 @@
 <?php
-
 class Login extends Controller {
 	function __construct() {
 		parent:: __construct();
 		echo 'Im Login';
-		//$this->_other();
         $this->view->render('login');
+        $this->model->loadModel('login');
 	}
-	// protected function _other() {
-	// 	echo 'This is other function';
-	// }
+ //    function index () {
+ //        require 'models/LoginModel.php';
+ //        $model = new LoginModel();
+ //    }
+	function userAuth() {
+        echo "aaaaa";
+        $this->model->run();
+    }
 }

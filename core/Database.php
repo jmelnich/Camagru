@@ -1,6 +1,6 @@
 <?php
-class Database extends PDO {
+class Database {
     public function __consrtuct(){
-        //parent::__consrtuct($DB_DSN, $DB_USER, $DB_PASSWORD);
+        parent::__consrtuct('mysql:host=localhost;dbname=camagru', 'root', 'castle7');
     }
 }

@@ -3,7 +3,7 @@ $page_title='Login page';
 ?>
 
 <div class="container">
-    <form id="login-form">
+    <form id="login-form" action="??????" method="post">
         <div class="form-group">
             <label>Email</label>
             <input type="text" class="form-control" name="email">
