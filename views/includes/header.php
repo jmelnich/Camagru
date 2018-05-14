@@ -1,8 +1,12 @@
+<?php
+$title = ($name == "index") ? "Home" : ucfirst($name);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title><?php echo $page_title; ?></title>
+        <title><?php echo $title; ?></title>
         <link rel="stylesheet" href="public/css/style.css">
     </head>
 
