@@ -154,3 +154,9 @@ label {
   border-color: #2e6da4;
   min-width: 100px;
   margin: 20px auto; }
+
+/* errors msg */
+.error {
+  display: block;
+  text-align: center;
+  color: red; }

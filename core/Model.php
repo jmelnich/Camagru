@@ -15,14 +15,14 @@ class Model {
     }
     public function run() {
         echo "IM RUNNING";
-        $login = $_POST['login'];
-        $password = $_POST['password'];
-        $sth = $this->db->prepare("SELECT id FROM users WHERE login = :login AND password = :password");
-        $sth->execute(array(
-            ':login' => $login,
-            ':password' => $password
-        ));
-        $data = $sth->fetchAll();
-        print_r($data);
+        // $login = $_POST['login'];
+        // $password = $_POST['password'];
+        // $sth = $this->db->prepare("SELECT id FROM users WHERE login = :login AND password = :password");
+        // $sth->execute(array(
+        //     ':login' => $login,
+        //     ':password' => $password
+        // ));
+        // $data = $sth->fetchAll();
+        // print_r($data);
     }
 }
