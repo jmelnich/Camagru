@@ -1,6 +1,4 @@
 <?php
-require_once(ROOT . '/controllers/User.php');
-
 class Signup extends Controller {
     function __construct() {
         parent:: __construct();

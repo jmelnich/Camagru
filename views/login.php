@@ -1,7 +1,3 @@
-<?php
-$page_title='Login page';
-?>
-
 <div class="container">
 	<form id="login-form" action="login" method="post">
 		<div class="form-group">

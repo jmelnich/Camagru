@@ -22,12 +22,20 @@ class User {
 		}
 	}
 
+	public function isFilled($text) {
+		if (!empty($text)) {
+			return true;
+		}
+		$this->errors[] = 'The text field cannot be empty';
+		return false;
+	}
+
 	public function isLogged($state) {
 
 	}
 
 	public function checkPass($password) {
-		if (strlen($password) >= 6) {
+		if (strlen($password) >= 5) {
             return true;
         }
         $this->errors[] = 'Wrong password';

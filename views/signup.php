@@ -1,7 +1,3 @@
-<?php
-$page_title='Signup page';
-?>
-
 <div class="container">
     <form id="login-form" action="signup" method="post">
         <div class="form-group">
