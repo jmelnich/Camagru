@@ -1,5 +1,9 @@
 <?php
-$DB_DSN = "mysql:host=localhost;dbname=camagru;charset=utf8";
-$DB_USER = "root";
-$DB_PASSWORD = "castle7";
+
+$HOST = 'localhost';
+$DBNAME = 'camagru';
+$USER = 'root';
+$PASSWORD = 'castle7';
 $ADM_EMAIL = "julyettka@gmail.com";
+// Set DSN
+$DSN = 'mysql:host=' . $HOST . ';dbname=' . $DBNAME . ';charset=utf8';

@@ -1,14 +1,9 @@
 <?php
 class Database {
     public function connect() {
-    	$host = 'localhost';
-    	$dbname = 'camagru';
-    	$user = 'root';
-    	$password = 'castle7';
-    	// Set DSN
-    	$dsn = 'mysql:host=' . $host . ';dbname=' . $dbname;
+      require 'config/database.php';
         try {
-			$pdo = new PDO($dsn, $user, $password);
+			$pdo = new PDO($DSN, $USER, $PASSWORD);
 			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			return $pdo;
 		} catch (PDOException $e) {

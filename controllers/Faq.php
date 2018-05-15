@@ -34,7 +34,9 @@ class Faq extends Controller {
     // Check validity
     	$user = new User();
     	if ($user->checkEmail($from_email) && ($user->isFilled($mail_msg))){
+			// The magic is going here: Send mail
 			mail($mail_to, $mail_subject, $mail_msg, $header);
+		// Generate HTML for user so let him know his message is sent
     	echo "<br/>
     			<p class='msg'>Thanks for submiting the form. <br/>
     			We will contact you to your " . $from_email . " email within 42 years :)</p>
@@ -44,7 +46,5 @@ class Faq extends Controller {
 			$this->view->render('faq', $errorMsg);
     	}
 
-		// Send mail
-		// Generate HTML for user
     }
 }
