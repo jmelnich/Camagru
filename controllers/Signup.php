@@ -10,18 +10,21 @@ class Signup extends Controller {
     }
 
     public function userSignup() {
-        $user = new User();
+        $valid = new Validation();
 		/*check credentials from html*/
 		$email = $_POST['email'];
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 		$password_confirm = $_POST['password_confirm'];
 
-		if ($user->checkEmail($email) && $user->checkEmailAvailability($email) && $user->checkUsername($username) && $user->checkPass($password) && $password == $password_confirm) {
+		if ($valid->checkEmail($email) && $valid->checkEmailAvailability($email)
+			&& $valid->checkUsername($username) && $valid->checkPass($password)
+			&& $password == $password_confirm) {
 			echo "correct";
+			//TODO: call to addUser method from UserModel
 			return true;
 		} else {
-			$errorMsg = $user->errors[0];
+			$errorMsg = $valid->errors[0];
 			$this->view->render('signup', $errorMsg);
 
 		}

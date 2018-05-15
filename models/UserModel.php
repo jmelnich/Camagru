@@ -14,6 +14,12 @@ class UserModel extends Model {
 		}
 	}
 
+	public function addUser($user) {
+		$sql = "INSERT INTO users (email, username, pass)
+		VALUES  ($user->email, $user->name, $user->pass);";
+		$this->pdo->insert($sql);
+	}
+
 	public function checkUserData($email, $password) {
 		echo $password;
 		// $sql = "SELECT * FROM users WHERE email = :email AND password = :password";

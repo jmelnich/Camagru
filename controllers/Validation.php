@@ -1,5 +1,5 @@
 <?php
-class User {
+class Validation {
 	public $errors = array();
 	public function checkEmail($email) {
 		if (filter_var($email, FILTER_VALIDATE_EMAIL)) {

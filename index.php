@@ -9,9 +9,8 @@ require_once(ROOT . '/core/Controller.php');
 require_once(ROOT . '/core/View.php');
 require_once(ROOT . '/core/Database.php');
 require_once(ROOT . '/core/Model.php');
-require_once(ROOT . '/controllers/User.php');
+require_once(ROOT . '/controllers/Valid.php');
 require_once(ROOT . '/models/UserModel.php');
-//require_once(ROOT . '/models/LoginModel.php');
 
 $router = new Router();
 $router->add('/', 'Home');

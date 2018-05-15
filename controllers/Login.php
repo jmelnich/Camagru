@@ -11,17 +11,17 @@ class Login extends Controller {
 	}
 
 	public function userLogin() {
-        $user = new User();
+        $valid = new Validation();
 		/*check credentials from html*/
 		$email = $_POST['email'];
 		$password = $_POST['password'];
-		if ($user->checkEmail($email) && $user->checkPass($password)) {
+		if ($valid->checkEmail($email) && $valid->checkPass($password)) {
 			//TODO`: check user exists in DB and its email matches password
 			$access = new UserModel();
 			$access->checkUserData($email, $password);
 			return true;
 		} else {
-			$errorMsg = $user->errors[0];
+			$errorMsg = $valid->errors[0];
 			$this->view->render('login', $errorMsg);
 
 		}
