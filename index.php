@@ -11,9 +11,9 @@ require_once(ROOT . '/core/init.php');
 
 //$user = DB::getInstance()->get('users', array('username', '=', 'julia'));
 //$user = DB::getInstance()->query("SELECT * FROM users");
-$user = DB::getInstance()->update('users', 2, array(
-	'username' => "ivan",
-));
+// $user = DB::getInstance()->update('users', 2, array(
+// 	'username' => "ivan",
+// ));
 
 
 // if(!$user->count()) {

@@ -10,27 +10,47 @@ class Signup extends Controller {
     }
 
     public function userSignup() {
-        $valid = new Validation();
-		/*check credentials from html*/
-		$email = $_POST['email'];
-		$username = $_POST['username'];
-		$password = $_POST['password'];
-		$password_confirm = $_POST['password_confirm'];
+        $validate = new Validation();
+        if(Input::exist()) {
+        	echo "submitted";
+        }
+		/*check credentials */
+		$validation = $validate->check($_POST, array(
+			'email' => array(
+				'name' => 'email',
+				'required' => true,
+				'min' => 2,
+				'max' => 20,
+				'unique' => 'users',
+				'valid' => 'rule'
+			),
+			'username' => array(
+				'name' => 'username',
+				'required' => true,
+				'min' => 2,
+				'max' => 20
+			),
+			'password' => array(
+				'name' => 'password',
+				'required' => true,
+				'min' => 6,
+				'max' => 20,
+				'complex' => 'rule'
+			),
+			'password_confirm' => array(
+				'name' => 'password confirmation',
+				'required' => true,
+				'matches' => 'password'
+			),
+		));
 
-		if ($valid->checkEmail($email) && $valid->checkEmailAvailability($email)
-			&& $valid->checkUsername($username) && $valid->checkPass($password)
-			&& $password == $password_confirm) {
-			echo "correct";
-			//TODO: call to addUser method from UserModel
-
-			return true;
+		if($validate->passed()) {
+			echo "Passsed";
 		} else {
-			$errorMsg = $valid->errors[0];
-			$this->view->render('signup', $errorMsg);
-
+			foreach ($validate->getErrors() as $error) {
+				echo $error . "<br/> ";
+			}
 		}
-		//$errors = false;
-
 
 		//$this->model->run();
 	}

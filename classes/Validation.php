@@ -1,45 +1,78 @@
 <?php
 class Validation {
-	public $errors = array();
-	public function checkEmail($email) {
-		if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-			return true;
+	private $_passed = false,
+			$_errors = array(),
+			$_db = null;
+
+	public function __construct() {
+		$this->_db = DB::getInstance();
+	}
+	public function check($source, $items = array()) {
+		foreach ($items as $item => $rules) {
+			foreach ($rules as $rule => $content) {
+				$value = trim($source[$item]);
+				if ($rule === 'name') {
+					$fieldName = $content;
+				}
+				if ($rule === 'required' && empty($value)) {
+					$this->addError("{$fieldName} is required");
+				} else if (!empty($value)) {
+					switch ($rule) {
+						case 'min':
+							if (strlen($value) < $content) {
+								$this->addError("{$fieldName} must be a minimum of {$content} characters");
+							}
+							break;
+						case 'max':
+							if (strlen($value) > $content) {
+								$this->addError("{$fieldName} must be a maximum of {$content} characters");
+							}
+							break;
+						case 'matches':
+							if ($value != $source[$content]) {
+								$this->addError("{$fieldName} must match {$content} characters");
+							}
+							break;
+						case 'unique':
+							$check = $this->_db->get($content, array($item, '=', $value));
+							if ($check->count()) {
+								$this->addError("{$fieldName} already exists");
+							}
+							break;
+						case 'valid':
+							if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
+								$this->addError("{$fieldName} should be valid");
+							}
+							break;
+						case 'complex':
+							if (!preg_match("#[0-9]+#", $value)) {
+								$this->addError("Password must include at least one number");
+							}
+							if (!preg_match("#[a-z]+#", $value)) {
+								$this->addError("Password must include at least one letter");
+							}
+							break;
+						default:
+							# code...
+							break;
+					}
+				}
+			}
 		}
-		$this->errors[] = 'Wrong email';
-		return false;
-	}
-
-	public function checkEmailAvailability($email) {
-		//TODO: check database if doesn't exist
-		return true;
-	}
-
-	public function checkUsername($username) {
-		if (preg_match('/^[a-z0-9 .\-]+$/i', $username)) {
-        	return true;
-		} else {
-        	$this->errors[] = 'Name can consist of letters or numbers only';
+		if (empty($this->_errors)) {
+			$this->_passed = true;
 		}
 	}
 
-	public function isFilled($text) {
-		if (!empty($text)) {
-			return true;
-		}
-		$this->errors[] = 'The text field cannot be empty';
-		return false;
+	public function addError($errorText) {
+		$this->_errors[] = $errorText;
 	}
 
-	public function isLogged($state) {
-
+	public function getErrors() {
+		return $this->_errors;
 	}
 
-	public function checkPass($password) {
-		if (strlen($password) >= 5) {
-            return true;
-        }
-        $this->errors[] = 'Wrong password';
-        return false;
+	public function passed() {
+		return $this->_passed;
 	}
-
 }
