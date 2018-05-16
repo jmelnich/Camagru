@@ -22,6 +22,7 @@ class Signup extends Controller {
 			&& $password == $password_confirm) {
 			echo "correct";
 			//TODO: call to addUser method from UserModel
+
 			return true;
 		} else {
 			$errorMsg = $valid->errors[0];

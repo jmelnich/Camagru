@@ -1,26 +1,23 @@
 <?php
-ini_set(display_errors, 1);
-error_reporting(E_ALL);
-
 define('ROOT', dirname(__FILE__));
-//require_once(ROOT . '/config/database.php');
-require_once(ROOT . '/core/Router.php');
-require_once(ROOT . '/core/Controller.php');
-require_once(ROOT . '/core/View.php');
-require_once(ROOT . '/core/Database.php');
-require_once(ROOT . '/core/Model.php');
-require_once(ROOT . '/controllers/Valid.php');
-require_once(ROOT . '/models/UserModel.php');
+require_once(ROOT . '/core/init.php');
+//echo Config::get('mysql/host');
+// $users = DB::getInstance()->query('SELECT username FROM users');
+// $if($users->count()) {
+// 	foreach ($users as $user) {
+// 		echo $user->username;
+// 	}
+// }
 
-$router = new Router();
-$router->add('/', 'Home');
-$router->add('/index', 'Home');
-$router->add('/login', 'Login');
-$router->add('/signup', 'Signup');
-$router->add('/faq', 'Faq');
+//$user = DB::getInstance()->get('users', array('username', '=', 'julia'));
+//$user = DB::getInstance()->query("SELECT * FROM users");
+$user = DB::getInstance()->update('users', 2, array(
+	'username' => "ivan",
+));
 
-//echo '<pre>';
-//print_r($router);
-$router->run();
 
-?>
+// if(!$user->count()) {
+// 	echo "No user";
+// } else {
+// 	echo $user->first()->username;
+// }

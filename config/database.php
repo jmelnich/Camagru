@@ -1,9 +1,18 @@
 <?php
-
-$HOST = 'localhost';
-$DBNAME = 'camagru';
-$USER = 'root';
-$PASSWORD = 'castle7';
+/* pull any data from config*/
+$GLOBALS['config'] = array(
+	'mysql' => array(
+		'host' => 'localhost',
+		'username' => 'root',
+		'password' => 'castle7',
+		'db' => 'camagru'
+	),
+	'remember' => array(
+		'cookie_name' => 'hash',
+		'cookie_expiry' => 604800
+	),
+	'session' => array(
+		'session_name' => 'user',
+	)
+);
 $ADM_EMAIL = "julyettka@gmail.com";
-// Set DSN
-$DSN = 'mysql:host=' . $HOST . ';dbname=' . $DBNAME . ';charset=utf8';

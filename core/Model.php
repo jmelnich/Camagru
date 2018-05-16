@@ -2,8 +2,8 @@
 class Model {
     public $pdo;
     public function __construct() {
-        $pdo = new Database;
-        $this->pdo = $pdo;
+        // $pdo = new Database; !!!!!!!Загрузить новую DB
+        // $this->pdo = $pdo;
     }
     // public function loadModel($name) {
     //     $path = 'models/' . ucfirst($name) . 'Model.php';

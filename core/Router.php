@@ -1,6 +1,5 @@
 <?php
-class Router
-{
+class Router {
 	private $_uriCollection = array();
 	private $_methodCollection = array();
 	/*
