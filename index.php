@@ -1,7 +1,7 @@
 <?php
 define('ROOT', dirname(__FILE__));
 require_once(ROOT . '/core/init.php');
-//echo Config::get('mysql/host');
+//DB::getInstance()->action('SELECT *', 'users', array('username', '=', 'julia'));
 // $users = DB::getInstance()->query('SELECT username FROM users');
 // $if($users->count()) {
 // 	foreach ($users as $user) {
@@ -15,6 +15,7 @@ require_once(ROOT . '/core/init.php');
 // 	'username' => "ivan",
 // ));
 
+//$user = DB::getInstance()->query("SELECT username FROM users WHERE username = ?", array('julia'));
 
 // if(!$user->count()) {
 // 	echo "No user";

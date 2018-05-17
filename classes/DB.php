@@ -27,8 +27,8 @@ class DB {
 		use self because of static */
 		if (!isset(self::$_instance)) {
 			self::$_instance = new DB();
-			return self::$_instance;
 		}
+		return self::$_instance;
 	}
 
 	/* $user = DB::getInstance()->query("SELECT username FROM users WHERE username = ?", array('julia')); */

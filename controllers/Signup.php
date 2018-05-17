@@ -5,7 +5,11 @@ class Signup extends Controller {
         echo 'Im signup ';
         $this->view->render('signup');
         if (isset($_POST['submit'])) {
-        	$this->userSignup();
+        	/* TODO:
+        	fix CSRF Protection: check our token (video 12/23)*/
+        	// if (Token::check(Input::get('token'))) {
+        		$this->userSignup();
+        	//}
         }
     }
 
@@ -22,11 +26,21 @@ class Signup extends Controller {
 				'min' => 2,
 				'max' => 20,
 				'unique' => 'users',
-				'valid' => 'rule'
+				'valid' => true
 			),
 			'username' => array(
 				'name' => 'username',
 				'required' => true,
+				'min' => 2,
+				'max' => 20
+			),
+			'first_name' => array(
+				'name' => 'first name',
+				'min' => 2,
+				'max' => 20
+			),
+			'last_name' => array(
+				'name' => 'last name',
 				'min' => 2,
 				'max' => 20
 			),
@@ -35,7 +49,7 @@ class Signup extends Controller {
 				'required' => true,
 				'min' => 6,
 				'max' => 20,
-				'complex' => 'rule'
+				'complex' => true
 			),
 			'password_confirm' => array(
 				'name' => 'password confirmation',
@@ -45,7 +59,11 @@ class Signup extends Controller {
 		));
 
 		if($validate->passed()) {
-			echo "Passsed";
+			Session::flash('success','Your register successfully!');
+			header('Location: index');
+			//echo "Passsing to UserModel";
+			//$user = new UserModel();
+			//$user->signUp();
 		} else {
 			foreach ($validate->getErrors() as $error) {
 				echo $error . "<br/> ";

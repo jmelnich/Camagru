@@ -5,9 +5,10 @@ class Validation {
 			$_db = null;
 
 	public function __construct() {
+		echo "<br/>Validation in it<br/>";
 		$this->_db = DB::getInstance();
 	}
-	public function check($source, $items = array()) {
+	public function check(Array $source, Array $items = array()) {
 		foreach ($items as $item => $rules) {
 			foreach ($rules as $rule => $content) {
 				$value = trim($source[$item]);
@@ -36,7 +37,7 @@ class Validation {
 						case 'unique':
 							$check = $this->_db->get($content, array($item, '=', $value));
 							if ($check->count()) {
-								$this->addError("{$fieldName} already exists");
+								$this->addError("{$fieldName} is already taken");
 							}
 							break;
 						case 'valid':
