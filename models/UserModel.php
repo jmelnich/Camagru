@@ -1,44 +1,15 @@
 <?php
 class UserModel extends Model {
-    public function __construct() {
+    public function __construct($user = null) {
         parent::__construct();
     }
 
-	public function signUp($user) {
-		echo $user . "I'm in usermodel!!";
-		$sql = "INSERT INTO users (email, username, pass)
-		VALUES  ($user->email, $user->name, $user->pass);";
-		$this->pdo->insert($sql);
+	public function create(Array $fields = array()) {
+		if (!$this->_db->insert('users', $fields)) {
+			throw new Exception('There was a problem creating a new user');
+		} else {
+			echo "if passed";
+		}
 	}
 
 }
-
-
-
- //    public function getAllUsers() {
- //    	$sql = "SELECT * from users";
-	// 	$stmt =$this->pdo->connect()->query($sql);
-	// 	while ($row = $stmt->fetch()) {
-	// 		$uid = $row['id'];
-	// 		echo "all users" . $uid;
-	// 		return $uid;
-	// 	}
-	// }
-
-
-	// public function checkUserData($email, $password) {
-	// 	echo $password;
-	// 	// $sql = "SELECT * FROM users WHERE email = :email AND password = :password";
-	// 	// $stmt = $this->pdo->connect()->query($sql);
-	// 	// $result = $stmt->prepare($sql);
-	// 	// $result->bindParam(':email', $email, PDO::PARAM_INT);
-	// 	// $result->bindParam(':password', $password, PDO::PARAM_INT);
-	// 	// $result->execute();
-
-	// 	// $user=$result->fetch();
-	// 	// if ($user) {
-	// 	// 	echo "here is " .  $user['id'];
-	// 	// 	return $user['id'];
-	// 	// }
-	// 	return false;
-	// }

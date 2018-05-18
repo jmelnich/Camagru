@@ -59,18 +59,30 @@ class Signup extends Controller {
 		));
 
 		if($validate->passed()) {
-			Session::flash('success','Your register successfully!');
-			header('Location: index');
-			//echo "Passsing to UserModel";
-			//$user = new UserModel();
-			//$user->signUp();
+			$user = new UserModel();
+			$salt = Hash::salt(32);
+			echo Input::get('token');
+			try {
+				echo "Passsing to UserModel";
+				$user->create(array(
+							'email' => Input::get('email'),
+							'username' => Input::get('username'),
+							'first_name' => Input::get('first_name'),
+							'last_name' => Input::get('last_name'),
+							'password' => Hash::make(Input::get('password'), $salt),
+							'salt' => $salt,
+							'token' => Input::get('token')
+						));
+				Session::flash('success','Your register successfully!');
+				header('Location: index');
+			} catch (Exception $e) {
+				die($e->getMessage()); //TODO: make it user-friendly. Redirect user to a page where we say that 'oops we cannot register you';
+			}
 		} else {
 			foreach ($validate->getErrors() as $error) {
 				echo $error . "<br/> ";
 			}
 		}
-
-		//$this->model->run();
 	}
 
 }

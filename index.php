@@ -15,7 +15,14 @@ require_once(ROOT . '/core/init.php');
 // 	'username' => "ivan",
 // ));
 
-//$user = DB::getInstance()->query("SELECT username FROM users WHERE username = ?", array('julia'));
+// $user = DB::getInstance()->insert("users", array('email' => "julyettka@gmail.com",
+// 							'username' => 'julyettka',
+// 							'first_name' => 'julia',
+// 							'last_name' => 'm',
+// 							'password' => '123456q', //TODO:change it
+// 							'salt' => '123456q', //TODO:change it
+// 							'token' => '1'
+// 						));
 
 // if(!$user->count()) {
 // 	echo "No user";

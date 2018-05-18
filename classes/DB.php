@@ -43,6 +43,7 @@ class DB {
 				}
 			}
 			if ($this->_query->execute()) {
+				echo "<br/> Execute <br/>";
 				/* Query is succesful (the bd exists, the table exists*/
 				$this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ);
 				$this->_count = $this->_query->rowCount();
@@ -118,6 +119,7 @@ class DB {
 			$values = null;
 			$x = 1;
 			foreach ($fields as $field) {
+				//print_r( "<br/>" . $field . "<br/>");
 				$values .= '?';
 				if ($x < count($fields)) {
 					$values .= ', ';

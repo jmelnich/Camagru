@@ -1,6 +1,14 @@
 <?php
-class User {
-	function __construct() {
+// class User {
+// 	private $_db;
 
-	}
-}
+// 	public function __construct($user = null) {
+// 		$this->_db = DB::getInstance();
+// 	}
+
+// 	public function create(Array $fields = array()) {
+// 		if (!$this->_db->insert('users', $fields)) {
+// 			throw new Exception('There was a problem creating a new user');
+// 		}
+// 	}
+// }
