@@ -24,7 +24,7 @@ class Signup extends Controller {
 				'name' => 'email',
 				'required' => true,
 				'min' => 2,
-				'max' => 20,
+				'max' => 30,
 				'unique' => 'users',
 				'valid' => true
 			),
@@ -61,7 +61,9 @@ class Signup extends Controller {
 		if($validate->passed()) {
 			$user = new UserModel();
 			$salt = Hash::salt(32);
-			echo Input::get('token');
+			$mail = new Email();
+
+
 			try {
 				echo "Passsing to UserModel";
 				$user->create(array(
@@ -73,7 +75,9 @@ class Signup extends Controller {
 							'salt' => $salt,
 							'token' => Input::get('token')
 						));
-				Session::flash('success','Your register successfully!');
+				$link =  "<a href='" . $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . "/profile/active/token=" . Input::get('token') . "&email=" . Input::get('email') . "'>this link</a>.\n";
+				$mail->activate(Input::get('email'), $link);
+				Session::flash('success','Your register successfully! Check your email for activation');
 				header('Location: index');
 			} catch (Exception $e) {
 				die($e->getMessage()); //TODO: make it user-friendly. Redirect user to a page where we say that 'oops we cannot register you';
