@@ -22,7 +22,11 @@ class Activate extends Controller {
     	}
     	if (!empty($token) && !empty($email)) {
     		$user = new UserModel();
-    		$user->activate($email, $token);
+    		if ($user->activate($email, $token)) {
+    			//TODO create flash on login page
+    			Session::flash('activation','Your email has been confirmed! Now you can login');
+				header('Location: index');
+    		}
     	} else {
     		echo '<br/> Link for activation not valid <br/>';
     	}

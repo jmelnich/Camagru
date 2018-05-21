@@ -22,17 +22,14 @@ class UserModel extends Model {
 	//TODO: compare token!
 		$this->_db->updateByEmail('users', $email, array(
 			'activation' => '1'));
-		//Session::flash('activation','Your email has been confirmed! Now you can login');
-				//header('Location: login');
+			return true;
 		} else {
 			echo "No user with this email";
+			return false;
 		}
-		//if ()
-		//get user with such an email
+
 		//get its token
 		//check if it matches
-		//in case it does, update activate column user
-		//if it doesn't use flash fnc about error
 	}
 
 }

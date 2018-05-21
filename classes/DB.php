@@ -43,13 +43,12 @@ class DB {
 				}
 			}
 			if ($this->_query->execute()) {
-				echo "<br/> Execute <br/>";
 				/* Query is succesful (the bd exists, the table exists*/
 				$this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ);
 				$this->_count = $this->_query->rowCount();
 				if ($this->_count > 0) {
 					/* it found the name/email whatever in db */
-					echo "Something has been found";
+					echo "<br/>Something has been found<br/>";
 				} else {
 					$this->_error = true;
 				}
@@ -131,7 +130,7 @@ class DB {
 				return true;
 			}
 		}
-		return false; //changed from $this
+		return $this; //changed from $this
 	}
 
 	/* update user info by id. Usage:
