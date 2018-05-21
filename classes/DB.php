@@ -131,14 +131,14 @@ class DB {
 				return true;
 			}
 		}
-		return $this;
+		return false; //changed from $this
 	}
 
 	/* update user info by id. Usage:
-		$user = DB::getInstance()->update('users', 2, array(
+		$user = DB::getInstance()->updateById('users', 2, array(
 		'username' => "ivan",
 	)); */
-	public function update($table, $id, $fields) {
+	public function updateById($table, $id, $fields) {
 		if (count($fields)) {
 			$set = '';
 			$x = 1;
@@ -150,6 +150,29 @@ class DB {
 				$x++;
 			}
 			$sql = "UPDATE {$table} SET {$set} WHERE id = {$id}";
+			if($this->query($sql, $fields)->error()) {
+				return true;
+			}
+		}
+		return $this;
+	}
+
+	/* update user info by email. Usage:
+		$user = DB::getInstance()->updateByEmail('users', 'julyettka@gmail.com', array(
+		'activation' => '1'
+	)); */
+	public function updateByEmail($table, $email, $fields) {
+		if (count($fields)) {
+			$set = '';
+			$x = 1;
+			foreach ($fields as $name => $value) {
+				$set .= "{$name} = ?";
+				if ($x < count($fields)) {
+					$set .= ', ';
+				}
+				$x++;
+			}
+			$sql = "UPDATE {$table} SET {$set} WHERE email = '$email'";
 			if($this->query($sql, $fields)->error()) {
 				return true;
 			}
