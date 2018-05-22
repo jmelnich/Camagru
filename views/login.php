@@ -1,8 +1,13 @@
+<?php
+if (Session::exists('activation')) {
+	echo Session::flash('activation');
+}
+?>
 <div class="container">
 	<form id="login-form" action="login" method="post">
 		<div class="form-group">
 			<label>Email</label>
-			<input type="text" class="form-control" name="email">
+			<input type="text" class="form-control" name="email" value="<?php echo escape(Input::get('email')); ?>">
 		</div>
 		<div class="form-group">
 				<label>Password</label>

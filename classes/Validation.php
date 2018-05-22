@@ -5,7 +5,6 @@ class Validation {
 			$_db = null;
 
 	public function __construct() {
-		echo "<br/>Validation in it<br/>";
 		$this->_db = DB::getInstance();
 	}
 	public function check(Array $source, Array $items = array()) {

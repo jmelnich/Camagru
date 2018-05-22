@@ -2,7 +2,6 @@
 class Faq extends Controller {
 	function __construct() {
 		parent:: __construct();
-		echo 'Im faq';
         $this->view->render('faq');
         if (isset($_POST['submit'])) {
         	$this->sendEmail();

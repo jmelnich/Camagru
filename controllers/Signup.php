@@ -2,7 +2,6 @@
 class Signup extends Controller {
     function __construct() {
         parent:: __construct();
-        echo 'Im signup ';
         $this->view->render('signup');
         if (isset($_POST['submit'])) {
         	/* TODO:
@@ -58,12 +57,9 @@ class Signup extends Controller {
 			),
 		));
 
-		if($validate->passed()) {
+		if ($validate->passed()) {
 			$user = new UserModel();
 			$salt = Hash::salt(32);
-			$mail = new Email();
-
-
 			try {
 				echo "Passsing to UserModel";
 				$user->create(array(
@@ -75,6 +71,7 @@ class Signup extends Controller {
 							'salt' => $salt,
 							'token' => Input::get('token')
 						));
+				$mail = new Email();
 				$link =  "<a href='" . $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . "/profile/active/token=" . Input::get('token') . "&email=" . Input::get('email') . "'>this link</a>.\n";
 				$mail->activate(Input::get('email'), $link);
 				Session::flash('success','Your register successfully! Check your email for activation');

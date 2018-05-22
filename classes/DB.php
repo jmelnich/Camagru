@@ -5,6 +5,7 @@ class DB {
 			$_query,
 			$_error = false,
 			$_results,
+			$_result,
 			$_count = 0;
 
 	/* this is run when the class is instantiated. We cannot call it twice.
@@ -177,5 +178,17 @@ class DB {
 			}
 		}
 		return $this;
+	}
+
+	/* FOR USERS ONLY */
+	/* find user by id or email. Usage: $user = $this->_db->find($email); */
+	public function find($user = null) {
+		if ($user) {
+			$field = is_numeric($user) ? 'id' : 'email';
+			$data = $this->get('users', array($field, '=', $user));
+			if ($data->count()) {
+				return $this->_result = ($this->first());
+			}
+		}
 	}
 }

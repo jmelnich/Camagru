@@ -2,7 +2,6 @@
 class Activate extends Controller {
 	function __construct() {
 		parent:: __construct();
-		echo 'Im activate';
 		$this->userActivate();
     }
 
@@ -23,9 +22,8 @@ class Activate extends Controller {
     	if (!empty($token) && !empty($email)) {
     		$user = new UserModel();
     		if ($user->activate($email, $token)) {
-    			//TODO create flash on login page
     			Session::flash('activation','Your email has been confirmed! Now you can login');
-				header('Location: index');
+				//header('Location: ../../login');
     		}
     	} else {
     		echo '<br/> Link for activation not valid <br/>';
