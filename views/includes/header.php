@@ -14,7 +14,19 @@ $title = ($name == "index") ? "Home" : ucfirst($name);
         <header>
             <ul class="nav">
                 <li><a href="index">Home</a></li>
+                <?php
+                    $user = new UserModel();
+                if ($user->isLoggedIn()) {
+                    $username = ucfirst($user->data()->username);
+                    ?>
+                <li><a href="profile">Hello, <?php echo escape($username);?></a></li>
+                <li><a href="logout">Log out</a></li>
+                <?php } else {
+                    ?>
                 <li><a href="login">Login</a></li>
                 <li><a href="signup">Sign up</a></li>
+                    <?php
+                }
+                ?>
             </ul>
         </header>

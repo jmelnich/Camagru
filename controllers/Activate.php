@@ -23,7 +23,7 @@ class Activate extends Controller {
     		$user = new UserModel();
     		if ($user->activate($email, $token)) {
     			Session::flash('activation','Your email has been confirmed! Now you can login');
-				//header('Location: ../../login');
+				header('Location: ../../login');
     		}
     	} else {
     		echo '<br/> Link for activation not valid <br/>';

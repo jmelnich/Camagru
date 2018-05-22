@@ -49,7 +49,7 @@ class DB {
 				$this->_count = $this->_query->rowCount();
 				if ($this->_count > 0) {
 					/* it found the name/email whatever in db */
-					echo "<br/>Something has been found<br/>";
+					return $this;
 				} else {
 					$this->_error = true;
 				}
@@ -180,15 +180,4 @@ class DB {
 		return $this;
 	}
 
-	/* FOR USERS ONLY */
-	/* find user by id or email. Usage: $user = $this->_db->find($email); */
-	public function find($user = null) {
-		if ($user) {
-			$field = is_numeric($user) ? 'id' : 'email';
-			$data = $this->get('users', array($field, '=', $user));
-			if ($data->count()) {
-				return $this->_result = ($this->first());
-			}
-		}
-	}
 }

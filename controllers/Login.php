@@ -30,7 +30,7 @@ class Login extends Controller {
 			$login = $user->login(Input::get('email'), Input::get('password'));
 			//TODO: login user
 			if ($login) {
-				echo 'success login';
+				header('Location: index');
 			} else {
 				echo 'sorry, logging failed';
 			}
