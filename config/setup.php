@@ -24,10 +24,18 @@ $db = DB::getInstance();
 $db->insert("users", array('email' => "julyettka@gmail.com",
 							'username' => 'julyettka',
 							'first_name' => 'julia',
-							'last_name' => 'm',
-							'password' => '123456q', //TODO:change it
-							'salt' => '123456q', //TODO:change it
+							'last_name' => 'ml',
+							'password' => '', //TODO:change it
+							'salt' => '', //TODO:change it
 							'token' => '1',
 							'activation' => '1',
 							'notification' => '0'
 						));
+
+
+$createUsersSessions = "CREATE TABLE IF NOT EXISTS `users_session`
+	(
+		`id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+		`user_id` int(11) NOT NULL UNIQUE,
+		`hash` varchar(50) NOT NULL
+	);";

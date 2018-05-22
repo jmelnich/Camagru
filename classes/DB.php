@@ -119,7 +119,6 @@ class DB {
 			$values = null;
 			$x = 1;
 			foreach ($fields as $field) {
-				//print_r( "<br/>" . $field . "<br/>");
 				$values .= '?';
 				if ($x < count($fields)) {
 					$values .= ', ';
