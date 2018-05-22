@@ -1,5 +1,12 @@
+<?php
+    $user = new UserModel();
+if ($user->isLoggedIn()) {
+    $username = ucfirst($user->data()->username);
+    $first_name = ucfirst($user->data()->first_name);
+    $last_name = ucfirst($user->data()->last_name);
+}?>
 <div class="container">
-	<form class="profile" id="edit-profile">
+	<form action="" method="post" class="profile" id="edit-profile">
 
 		<h3 class="panel-title">Profile info</h3>
 		<div class="form-group">
@@ -9,17 +16,18 @@
 		</div>
 		<div class="form-group">
 			<label for="name">Username</label>
-			<input type="text" name="name" class="form-control" value="">
+			<input type="text" name="name" class="form-control" value="<?php echo escape($username); ?>">
 		</div>
 		<div class="form-group">
 			<label for="name">First name</label>
-			<input type="text" name="name" class="form-control" value="">
+			<input type="text" name="name" class="form-control" value="<?php echo escape($first_name); ?>">
 		</div>
 		<div class="form-group">
 			<label for="name">Last name</label>
-			<input type="text" name="name" class="form-control" value="">
+			<input type="text" name="name" class="form-control" value="<?php echo escape($last_name); ?>">
 		</div>
-		<button class="btn btn-primary btn-mw-sm" data-profile-action="save">
+		<input type="hidden" name="token" value="<?php echo Token::generate();?>">
+		<button type="submit" value="update" class="btn btn-primary">
 			<span>Update</span>
 		</button>
 	</form>

@@ -30,7 +30,7 @@
           <input type="password" class="form-control" name="password_confirm" value="">
         </div>
         <span class="error"><?php echo $data?></span>
-        <input type="hidden"" name="token" value="<?php echo Token::generate();?>">
+        <input type="hidden" name="token" value="<?php echo Token::generate();?>">
         <button type="submit" name="submit" class="btn btn-primary">Sign Up</button>
         <p>Already have account? <span><a href="login">Log in</a><span></p>
     </form>
