@@ -24,4 +24,7 @@ $GLOBALS['config'] = array(
 	It's really great to have you around. After you confirm your email, you can login to your account and free to post in the application, explore other users posts and boost your inspiration with us.
 	If there's anything we can do to make your experience better, just reply to this email and we'll get right back to you.",
 	),
+	'img' => array(
+		'avatars' => 'public/img/avatars/',
+	)
 );

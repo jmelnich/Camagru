@@ -14,16 +14,17 @@ if ($user->isLoggedIn()) {
 <div class="container">
 		<h3 class="panel-title">Profile info</h3>
 		<div class="container-left">
-			<form action="profile" method="post" class="profile" id="edit-avatar">
+			<form enctype="multipart/form-data" action="profile" method="post" class="profile" id="edit-avatar">
 				<div class="form-group">
-					<img class="avatar" src="..<?php echo escape($avatar)?>" alt="Smiley face" height="150" width="150">
+					<img class="avatar" src="../<?php echo escape($avatar)?>" alt="Smiley face" height="150" width="150">
 					<label class="profile__pic-uploader" title="Change picture">Change photo</label>
-						<input type="file" name="picture" accept="image/*">
-				</div>
+					<input type="file" name="picture" accept="image/*">
 				<input type="hidden" name="token" value="<?php echo Token::generate();?>">
+				<input type="hidden" name="MAX_FILE_SIZE" value="32768">
 				<button type="submit" name="submit-photo" value="update" class="btn btn-primary">
 					<span>Update</span>
 				</button>
+				</div>
 			</form>
 		</div>
 		<div class="container-right">

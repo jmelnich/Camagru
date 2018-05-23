@@ -16,8 +16,19 @@ class Profile extends Controller {
 	}
 
 	public function uploadPhoto() {
-		echo "photo";
-		//echo $_FILES['picture'];
+		$name = $_FILES['picture']['name'];
+		$path = Config::get('img/avatars');
+		$target = $path . $name;
+		echo $target;
+		$user = new UserModel();
+		try {
+			$user->update(array(
+				'avatar' => $target
+			));
+		move_uploaded_file($_FILES['picture']['tmp_name'], $target);
+		} catch(Exception $e) {
+			die($e->getMessage());
+		}
 	}
 
 	public function editDetails() {
@@ -44,7 +55,7 @@ class Profile extends Controller {
 		if ($validate->passed()) {
 			$user = new UserModel();
 			try {
-				$user->updateDetails(array(
+				$user->update(array(
 					'username' => Input::get('username'),
 					'first_name' => Input::get('first_name'),
 					'last_name' => Input::get('last_name')
@@ -82,14 +93,13 @@ class Profile extends Controller {
 			)
 		));
 		if ($validate->passed()) {
-			echo "v passed";
 			$user = new UserModel();
 			if (Hash::make(Input::get('current_password'), $user->data()->salt) !== $user->data()->password) {
 				echo 'Your current password is wrong <br/>';
 			} else {
 				$salt = Hash::salt(32);
 				try {
-					$user->updatePassword(array(
+					$user->update(array(
 						'password' => Hash::make(Input::get('new_password'), $salt),
 						'salt' => $salt
 					));

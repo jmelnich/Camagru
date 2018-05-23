@@ -119,22 +119,12 @@ class UserModel extends Model {
 		return (!empty($this->_data)) ? true : false;
 	}
 
-	public function updateDetails(Array $fields = array(), $id = null) {
+	public function update(Array $fields = array(), $id = null) {
 		if(!$id && $this->isLoggedIn()) {
 			$id = $this->data()->id;
 		}
 		if (!$this->_db->updateById('users', $id, $fields)) {
-			throw new Exception('There was a problem updating details');
+			throw new Exception('There was a problem updating your info');
 		}
 	}
-
-	public function updatePassword(Array $fields = array(), $id = null) {
-		if(!$id && $this->isLoggedIn()) {
-			$id = $this->data()->id;
-		}
-		if (!$this->_db->updateById('users', $id, $fields)) {
-			throw new Exception('There was a problem updating a password');
-		}
-	}
-
 }
