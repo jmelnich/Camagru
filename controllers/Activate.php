@@ -13,7 +13,6 @@ class Activate extends Controller {
 
     public function userActivate() {
     	$uri = getURI();
-
     	$exploded = $this->multiexplode(array("=","&"),$uri);
     	if (isset($exploded[1]) && isset($exploded[3])) {
     		$token = $exploded[1];
@@ -24,9 +23,11 @@ class Activate extends Controller {
     		if ($user->activate($email, $token)) {
     			Session::flash('activation','Your email has been confirmed! Now you can login');
 				header('Location: ../../login');
-    		}
+    		} else {
+                echo '<br/> Link for activation not valid <br/>';
+            }
     	} else {
-    		echo '<br/> Link for activation not valid <br/>';
+    		echo '<br/> Token or Email is empty... and link for activation not valid <br/>';
     	}
     }
 }

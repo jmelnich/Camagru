@@ -30,17 +30,17 @@ class Signup extends Controller {
 			'username' => array(
 				'name' => 'username',
 				'required' => true,
-				'min' => 2,
+				'min' => 1,
 				'max' => 20
 			),
 			'first_name' => array(
 				'name' => 'first name',
-				'min' => 2,
+				'min' => 1,
 				'max' => 20
 			),
 			'last_name' => array(
 				'name' => 'last name',
-				'min' => 2,
+				'min' => 1,
 				'max' => 20
 			),
 			'password' => array(
@@ -81,7 +81,7 @@ class Signup extends Controller {
 			}
 		} else {
 			foreach ($validate->getErrors() as $error) {
-				echo $error . "<br/> ";
+				echo $error . '<br/> ';
 			}
 		}
 	}

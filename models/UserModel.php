@@ -69,26 +69,31 @@ class UserModel extends Model {
 		} else {
 			$user = $this->find($email);
 			if ($user) {
-				if ($user->password === Hash::make($password, $user->salt)) {
-					/* storing user id in session: $_SESSION[$session_name] = 3;*/
-					Session::put($this->_sessionName, $user->id);
-					if ($remember) {
-						/* storing in cookies */
-						$hashCheck = $this->_db->get('users_session', array('user_id', '=', $user->id));
-						if (!$hashCheck->count()) {
-							$hash = Hash::unique();
-							$this->_db->insert('users_session', array(
-								'user_id' => $user->id,
-								'hash' => $hash
-							));
-						} else {
-							$hash = $hashCheck->first()->hash;
+			$active = $user->activation;
+				if ($active) {
+					if ($user->password === Hash::make($password, $user->salt)) {
+						/* storing user id in session: $_SESSION[$session_name] = 3;*/
+						Session::put($this->_sessionName, $user->id);
+						if ($remember) {
+							/* storing in cookies */
+							$hashCheck = $this->_db->get('users_session', array('user_id', '=', $user->id));
+							if (!$hashCheck->count()) {
+								$hash = Hash::unique();
+								$this->_db->insert('users_session', array(
+									'user_id' => $user->id,
+									'hash' => $hash
+								));
+							} else {
+								$hash = $hashCheck->first()->hash;
+							}
+							Cookie::put($this->_cookieName, $hash, Config::get('remember/cookie_expiry'));
 						}
-						Cookie::put($this->_cookieName, $hash, Config::get('remember/cookie_expiry'));
+						return true;
+					} else {
+						echo '<br/> passwords dont match <br/>';
 					}
-					return true;
 				} else {
-					echo '<br/> passwords dont match <br/>';
+					echo '<br/> please activate your account via email <br/>';
 				}
 			}
 		}
@@ -112,6 +117,24 @@ class UserModel extends Model {
 	/*  */
 	public function exists() {
 		return (!empty($this->_data)) ? true : false;
+	}
+
+	public function updateDetails(Array $fields = array(), $id = null) {
+		if(!$id && $this->isLoggedIn()) {
+			$id = $this->data()->id;
+		}
+		if (!$this->_db->updateById('users', $id, $fields)) {
+			throw new Exception('There was a problem updating details');
+		}
+	}
+
+	public function updatePassword(Array $fields = array(), $id = null) {
+		if(!$id && $this->isLoggedIn()) {
+			$id = $this->data()->id;
+		}
+		if (!$this->_db->updateById('users', $id, $fields)) {
+			throw new Exception('There was a problem updating a password');
+		}
 	}
 
 }

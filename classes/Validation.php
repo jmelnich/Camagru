@@ -30,7 +30,7 @@ class Validation {
 							break;
 						case 'matches':
 							if ($value != $source[$content]) {
-								$this->addError("{$fieldName} must match {$content} characters");
+								$this->addError("{$fieldName} must match {$content}");
 							}
 							break;
 						case 'unique':

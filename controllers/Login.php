@@ -15,13 +15,11 @@ class Login extends Controller {
 			'email' => array(
 				'name' => 'email',
 				'required' => true,
-				'exist' => 'users',
 				'valid' => true
 			),
 			'password' => array(
 				'name' => 'password',
-				'required' => true,
-				'match' => 'email'
+				'required' => true
 			)
 		));
 
