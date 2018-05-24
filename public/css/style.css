@@ -46,11 +46,15 @@ body {
   line-height: 1.42857143;
   color: #333; }
 
-  h3 {
-    font-weight: 800;
-    font-size: 1.7em;
-    text-align: center;
-  }
+h3 {
+  font-weight: 800;
+  font-size: 1.7em;
+  text-align: center;
+}
+
+.text a{
+  color: grey;
+}
 
 .container {
   margin: 0 auto;
@@ -96,7 +100,8 @@ footer {
     padding: 5px 0;
     text-align: center; }
 
-.faq {
+.faq a {
+  color: white;
   font-size: 12px; }
 
 /* blue */

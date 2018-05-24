@@ -30,13 +30,22 @@ final class Email {
 		$this->send($from, $name, $fullMsg, $to, $subject);
 	}
 
-	public function remind() {
-
+	public function recover($to, $link) {
+		$from = Config::get('mail/admin_mail');
+		$msg = Config::get('mail/recovery_msg');
+		$name = Config::get('mail/admin_name');
+		$fullMsg = $msg . " Please recover Your password with this " . $link;
+		$subject = 'Password recovery request';
+		$this->send($from, $name, $fullMsg, $to, $subject);
 	}
 
 	public function contact($from, $name, $msg) {
 		$subject = 'A letter from website visitor';
 		$to = Config::get('mail/admin_mail');
 		$this->send($from, $name, $msg, $to, $subject);
+	}
+
+	public function remind() {
+
 	}
 }

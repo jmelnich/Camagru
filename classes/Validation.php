@@ -39,6 +39,13 @@ class Validation {
 								$this->addError("{$fieldName} is already taken");
 							}
 							break;
+						case 'exists':
+							$check = $this->_db->get($content, array($item, '=', $value));
+							echo $check->count();
+							if (!$check->count()) {
+								$this->addError("{$fieldName} doesn't exist");
+							}
+							break;
 						case 'valid':
 							if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
 								$this->addError("{$fieldName} should be valid");

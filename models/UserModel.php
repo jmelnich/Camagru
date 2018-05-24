@@ -37,6 +37,17 @@ class UserModel extends Model {
 		}
 	}
 
+	/* check that token === token */
+	public function check($email, $token) {
+		$user = $this->find($email);
+		if ($user) {
+			if ($user->token === $token) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public function create(Array $fields = array()) {
 		if (!$this->_db->insert('users', $fields)) {
 			throw new Exception('There was a problem creating a new user');
@@ -46,19 +57,13 @@ class UserModel extends Model {
 	}
 
 	public function activate($email, $token) {
-		$user = $this->find($email);
-		if ($user) {
-			$db_token = $user->token;
-			if ($token === $db_token) {
-				$this->_db->updateByEmail('users', $email, array(
-					'activation' => '1'));
-				return true;
-			} else {
-				echo '<br/> wrong token <br/>';
-				return false;
-			}
+		$check = $this->check($email, $token);
+		if ($check) {
+			$this->_db->updateByEmail('users', $email, array(
+				'activation' => '1'));
+			return true;
 		} else {
-			echo '<br/> No user with this email <br/>';
+			echo '<br/> wrong token <br/>';
 			return false;
 		}
 	}
@@ -122,7 +127,10 @@ class UserModel extends Model {
 	public function update(Array $fields = array(), $id = null) {
 		if(!$id && $this->isLoggedIn()) {
 			$id = $this->data()->id;
+		} else {
+			$id = $this->data()->id;//$user = new UserModel(Input::get('email'));
 		}
+		echo $id;
 		if (!$this->_db->updateById('users', $id, $fields)) {
 			throw new Exception('There was a problem updating your info');
 		}

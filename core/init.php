@@ -28,9 +28,10 @@ $router->add('/index', 'Home');
 $router->add('/login', 'Login');
 $router->add('/signup', 'Signup');
 $router->add('/profile', 'Profile');
-$router->add('/profile/active/token=', 'Activate'); //for activating account
+$router->add('/token=', 'LinkManager'); //for activating account//recovering pass
 $router->add('/logout', 'Logout');
 $router->add('/faq', 'Faq');
+$router->add('/recovery', 'Recovery');
 
 $router->run();
 

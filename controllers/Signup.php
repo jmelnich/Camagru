@@ -61,7 +61,6 @@ class Signup extends Controller {
 			$user = new UserModel();
 			$salt = Hash::salt(32);
 			try {
-				echo "Passsing to UserModel";
 				$user->create(array(
 							'email' => Input::get('email'),
 							'username' => Input::get('username'),

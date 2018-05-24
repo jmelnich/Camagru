@@ -13,13 +13,14 @@ if (Session::exists('activation')) {
 				<label>Password</label>
 				<input type="password" class="form-control" name="password">
 		</div>
+		<p class="text"><a href="recovery">Forgot password?</a></p>
 		<div class="form-group">
 				<input type="checkbox" class="" name="remember" id="remember">
 				<label class="label-secondary" for="remember">Remember me</label>
 		</div>
 		<span class="error"><?php echo $data?></span>
 		<button type="submit" name="submit" class="btn btn-primary">Log In</button>
-		<p>Don't have account? <span><a href="signup">Sign up</a><span></p>
+		<p class="text">Don't have account? <span><a href="signup">Sign up</a><span></p>
 	</form>
 </div>
 

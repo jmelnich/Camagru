@@ -17,7 +17,7 @@ class Router {
 		$uri = getURI();
 		/* код поиска тоукена в url for activation */
 		if (preg_match("/token/", $uri)) {
-			$methodName = 'Activate';
+			$methodName = 'LinkManager';
 			$controllerFile = ROOT . '/controllers/' . $methodName . '.php';
 				if (file_exists($controllerFile)) {
 					include_once($controllerFile);
