@@ -7,6 +7,7 @@ $title = ($name == "index") ? "Home" : ucfirst($name);
     <head>
         <meta charset="UTF-8">
         <title><?php echo $title; ?></title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="public/css/style.css">
     </head>
 
@@ -20,6 +21,7 @@ $title = ($name == "index") ? "Home" : ucfirst($name);
                     $username = ucfirst($user->data()->username);
                     ?>
                 <li><a href="profile">Hello, <?php echo escape($username);?></a></li>
+                <li><a href="add">Add photo</a></li>
                 <li><a href="logout">Log out</a></li>
                 <?php } else {
                     ?>

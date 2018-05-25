@@ -33,6 +33,7 @@ $router->add('/logout', 'Logout');
 $router->add('/faq', 'Faq');
 $router->add('/recovery', 'Recovery');
 $router->add('/password', 'Password');
+$router->add('/add', 'Add');
 
 $router->run();
 

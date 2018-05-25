@@ -203,3 +203,68 @@ label {
 .panel-title {
   margin-bottom: 20px;
 }
+
+/* img uploader */
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
+
+.editor__uploader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    width: 70%;
+    margin: 0 auto;
+    border: 8px dashed;
+    color: #ccc;
+    font-size: 26px;
+    cursor: pointer;
+}
+
+.camera {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.editor__uploader-inner {
+    position: relative;
+}
+
+.editor__uploader .fa-picture-o {
+    display: block;
+    font-size: 6em;
+}
+
+.editor__uploader .fa-plus {
+    position: absolute;
+    top: 0;
+    right: -1em;
+    font-size: 2em;
+}
+
+.editor__uploader input[type="file"] {
+    display: none;
+}
+
+.filters {
+  margin-bottom: 60px;
+}
+
+.filter-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.filter-list img {
+  width: 100px;
+  height: 100px;
+}
