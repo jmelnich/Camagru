@@ -32,6 +32,7 @@ $router->add('/token=', 'LinkManager'); //for activating account//recovering pas
 $router->add('/logout', 'Logout');
 $router->add('/faq', 'Faq');
 $router->add('/recovery', 'Recovery');
+$router->add('/password', 'Password');
 
 $router->run();
 

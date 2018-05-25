@@ -13,7 +13,8 @@ $GLOBALS['config'] = array(
 	),
 	'session' => array(
 		'session_name' => 'user',
-		'token_name' => 'token'
+		'token_name' => 'token',
+		'email_name' => 'email'
 	),
 	'mail' => array(
 		'admin_mail' => 'julyettka@gmail.com',

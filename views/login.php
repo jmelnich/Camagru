@@ -2,6 +2,9 @@
 if (Session::exists('activation')) {
 	echo Session::flash('activation');
 }
+if (Session::exists('change-password')) {
+	echo Session::flash('change-password');
+}
 ?>
 <div class="container">
 	<form id="login-form" action="login" method="post">
@@ -23,5 +26,3 @@ if (Session::exists('activation')) {
 		<p class="text">Don't have account? <span><a href="signup">Sign up</a><span></p>
 	</form>
 </div>
-
-

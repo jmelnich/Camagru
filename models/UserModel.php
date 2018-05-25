@@ -125,12 +125,9 @@ class UserModel extends Model {
 	}
 
 	public function update(Array $fields = array(), $id = null) {
-		if(!$id && $this->isLoggedIn()) {
-			$id = $this->data()->id;
-		} else {
-			$id = $this->data()->id;//$user = new UserModel(Input::get('email'));
+		if(!$id) {
+			$id = $this->data()->id; //$user = new UserModel(Input::get('email'));
 		}
-		echo $id;
 		if (!$this->_db->updateById('users', $id, $fields)) {
 			throw new Exception('There was a problem updating your info');
 		}

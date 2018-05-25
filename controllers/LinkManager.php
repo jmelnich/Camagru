@@ -16,7 +16,7 @@ class LinkManager extends Controller {
     public function manage() {
     	$uri = getURI();
         $exploded = $this->multiexplode(array("=","&"), $uri);
-        print_r($exploded);
+        //print_r($exploded);
     	if (isset($exploded[1]) && isset($exploded[3])) {
             $task = $exploded[0];
             $token = $exploded[1];
@@ -50,13 +50,12 @@ class LinkManager extends Controller {
     }
 
     private function recover($token, $email) {
-        echo $token;
-        echo $email;
         $user = new UserModel();
         $check = $user->check($email, $token);
         if ($check) {
-            //TODO: generate form for new password
-            //send user to that page
+            $this->_sessionName = Config::get('session/email_name');
+            Session::put($this->_sessionName, $email);
+            header('Location: ../../password');
         }
     }
 }

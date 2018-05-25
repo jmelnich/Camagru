@@ -14,9 +14,6 @@ class Signup extends Controller {
 
     public function userSignup() {
         $validate = new Validation();
-        if(Input::exist()) {
-        	echo "submitted";
-        }
 		/*check credentials */
 		$validation = $validate->check($_POST, array(
 			'email' => array(
