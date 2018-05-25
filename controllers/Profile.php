@@ -16,20 +16,40 @@ class Profile extends Controller {
 	}
 
 	public function uploadPhoto() {
-		$name = $_FILES['picture']['name'];
-		$path = Config::get('img/avatars');
-		$target = $path . $name;
-		echo $target;
-		$user = new UserModel();
-		try {
-			$user->update(array(
-				'avatar' => $target
-			));
-		move_uploaded_file($_FILES['picture']['tmp_name'], $target);
-		} catch(Exception $e) {
-			die($e->getMessage());
+		$validate = new ImageValidation();
+		$validation = $validate->check($_FILES['picture'], array(
+			'size' => array(
+				'name' => 'size',
+				'min' => 0,
+				'max' => 10000
+			),
+			'type' => array(
+				'name' => 'type',
+				'type' => 'valid'
+			)
+		));
+		if ($validate->passed()) {
+			$name = $_FILES['picture']['name'];
+			$path = Config::get('img/avatars');
+			$target = $path . $name;
+			//echo $target;
+			$user = new UserModel();
+			try {
+				$user->update(array(
+					'avatar' => $target
+				));
+			move_uploaded_file($_FILES['picture']['tmp_name'], $target);
+			} catch(Exception $e) {
+				die($e->getMessage());
+			}
+			header('Location: profile');
+		} else {
+			foreach ($validate->getErrors() as $error) {
+				echo $error . '<br/> ';
+			}
 		}
 	}
+
 
 	public function editDetails() {
 		echo "test";
