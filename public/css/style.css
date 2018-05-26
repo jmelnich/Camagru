@@ -217,8 +217,8 @@ label {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 400px;
-    width: 70%;
+    width: 400px;
+    height: 300px;
     margin: 0 auto;
     border: 8px dashed;
     color: #ccc;
@@ -226,17 +226,29 @@ label {
     cursor: pointer;
 }
 
-.camera {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 400px;
-    width: 70%;
-    margin: 0 auto;
+#uploadPreview {
+  max-width: 100%;
+  max-height: 100%;
+  z-index: 2;
+}
+
+.camera-container {
+  display: none;
+  width: 400px;
+  height: 300px;
+  margin: 0 auto;
+  color: #ccc;
+  border: 8px dashed;
+
+}
+
+#video, #canvas {
+  width: 400px;
+  height: 300px;
 }
 
 .editor__uploader-inner {
-    position: relative;
+    position: absolute;
 }
 
 .editor__uploader .fa-picture-o {
@@ -261,7 +273,7 @@ label {
 
 .filter-list {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .filter-list img {

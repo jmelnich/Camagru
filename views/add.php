@@ -1,5 +1,6 @@
 <div class="container">
 	<div class="filters">
+		<h2>Choose a frame</h2>
 		<ul class="filter-list">
 			<li><img src="public/img/filters/owl.png" alt="owl"></li>
 			<li><img src="public/img/filters/square_black.png" alt="black square"></li>
@@ -14,8 +15,8 @@
 	    	<img id="uploadPreview" />
 	    	<input id="upload-image" type="file" accept="image/*" onchange="preview();">
 		</label>
-		<script type="text/javascript">
 
+		<script type="text/javascript">
     function preview() {
         var oFReader = new FileReader();
         oFReader.readAsDataURL(document.getElementById("upload-image").files[0]);
@@ -24,10 +25,12 @@
             document.getElementById("uploadPreview").src = oFREvent.target.result;
         };
     };
-
 </script>
+
 	</form>
-	<div class="camera">
-		<video></video>
+	<div class="camera-container">
+		<video id="video"></video>
+		<button id="capture" class="btn btn-primary">Take snapshot</button>
+		<canvas id="canvas" width="400" height="300"></canvas>
 	</div>
 </div>
