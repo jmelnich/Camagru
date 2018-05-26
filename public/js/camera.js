@@ -14,8 +14,11 @@ window.onload = function() {
     const canvas = document.getElementById('canvas');
     const context = canvas.getContext('2d');
     const form = document.getElementById('add-img');
-
     const captureBtn = document.getElementById('capture');
+
+    //TODO: write class that chose images
+    let imgSrc = document.getElementsByClassName('chosen')[0].src;
+    console.log(imgSrc);
 
     navigator.mediaDevices.getUserMedia(constraints).then(function(mediaStream) {
         video.src = vendorUrl.createObjectURL(mediaStream);
@@ -33,6 +36,16 @@ window.onload = function() {
 
     function capture () {
         console.log('im capture');
-        context.drawImage(video, 1, 1);
+        context.drawImage(video, 0, 0, 400, 300);
+        make_base();
+    }
+
+    function make_base()
+    {
+        base_image = new Image();
+        base_image.src = imgSrc;
+        base_image.onload = function(){
+            context.drawImage(base_image, 0, 0);
+        }
     }
 };

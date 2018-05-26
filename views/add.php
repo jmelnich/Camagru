@@ -2,8 +2,9 @@
 	<div class="filters">
 		<h2>Choose a frame</h2>
 		<ul class="filter-list">
-			<li><img src="public/img/filters/owl.png" alt="owl"></li>
-			<li><img src="public/img/filters/square_black.png" alt="black square"></li>
+			<li><img class="chosen" src="public/img/filters/hearts.png" alt="owl"></li>
+			<li><img class="" src="public/img/filters/green.png" alt="owl"></li>
+			<li><img class="" src="public/img/filters/square_black.png" alt="black square"></li>
 		</ul>
 	</div>
 	<form id="add-img" action="add" method="post">
