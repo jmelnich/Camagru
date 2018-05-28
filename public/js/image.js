@@ -1,4 +1,4 @@
-import { makeBase } from './canvas.js';
+import { makeBase, getImgSrc } from './canvas.js';
 import { makeBtn } from './button.js';
 
 const uploadHandler = document.getElementById('upload-btn');
@@ -28,6 +28,7 @@ function upload(e) {
     }
     if (!document.getElementById('save')) {
     	let parent = document.getElementsByClassName('canvas-container')[0];
-    	makeBtn('save', parent);
+    	let saveBtn = makeBtn('save', parent);
+    	getImgSrc(parent);
     }
 }

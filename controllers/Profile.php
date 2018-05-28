@@ -130,7 +130,6 @@ class Profile extends Controller {
 				header('Location: profile');
 			}
 		} else {
-			echo "999";
 			foreach ($validate->getErrors() as $error) {
 				echo $error . '<br/> ';
 			}
