@@ -1,4 +1,5 @@
 import { WIDTH, HEIGTH } from './constants.js';
+import { post } from './post.js';
 
 const canvas = document.getElementById('canvas');
 const context = canvas.getContext('2d');
@@ -11,7 +12,19 @@ export function draw(source){
     }
 }
 
-export function convert_64() {
+function convert_64() {
 	let src = canvas.toDataURL('image/png');
 	return src;
+}
+
+function getUID() {
+	let uid = document.getElementById('uid').innerHTML;
+	return uid;
+}
+
+export function save(e){
+	e.preventDefault();
+	let src = convert_64();
+	let uid = getUID();
+	post(src, uid);
 }

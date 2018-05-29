@@ -19,6 +19,7 @@ $title = ($name == "index") ? "Home" : ucfirst($name);
                     $user = new UserModel();
                 if ($user->isLoggedIn()) {
                     $username = ucfirst($user->data()->username);
+                    $uid = $user->data()->id;
                     ?>
                 <li><a href="profile">Hello, <?php echo escape($username);?></a></li>
                 <li><a href="add">Add photo</a></li>
@@ -31,4 +32,5 @@ $title = ($name == "index") ? "Home" : ucfirst($name);
                 }
                 ?>
             </ul>
+            <div id="uid" class="hidden"><?php echo escape($uid);?></div>
         </header>

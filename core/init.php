@@ -20,6 +20,7 @@ require_once(ROOT . '/core/Controller.php'); //it also includes all other contro
 require_once(ROOT . '/core/View.php');
 require_once(ROOT . '/core/Model.php');
 require_once(ROOT . '/models/UserModel.php');
+require_once(ROOT . '/models/PostModel.php');
 
 /*add page to router and render it in its controller*/
 $router = new Router();

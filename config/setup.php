@@ -39,3 +39,12 @@ $createUsersSessions = "CREATE TABLE IF NOT EXISTS `users_session`
 		`user_id` int(11) NOT NULL UNIQUE,
 		`hash` varchar(50) NOT NULL
 	);";
+
+$createPosts = "CREATE TABLE IF NOT EXISTS `posts`
+	(
+		`id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+		`uid` int(11) NOT NULL,
+		`isrc` varchar(50) NOT NULL,
+		`time` DATETIME DEFAULT NOW()
+	);"
+

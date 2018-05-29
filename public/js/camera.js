@@ -1,5 +1,5 @@
 import { WIDTH, HEIGTH } from './constants.js';
-import { draw } from './canvas.js';
+import { draw, save } from './canvas.js';
 import { makeBtn } from './button.js';
 
 const form = document.getElementById('add-img');
@@ -41,6 +41,7 @@ function capture () {
     if (!document.getElementById('save')) {
         let parent = document.getElementsByClassName('canvas-container')[0];
         makeBtn('save', parent);
+        saveBtn.addEventListener('click', save);
     }
 }
 

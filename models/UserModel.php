@@ -6,7 +6,7 @@ class UserModel extends Model {
 			$_cookieName;
 
     public function __construct($user = null) {
-    	echo $this->_data;
+    	//echo $this->_data;
         parent::__construct();
         $this->_sessionName = Config::get('session/session_name');
         $this->_cookieName = Config::get('remember/cookie_name');

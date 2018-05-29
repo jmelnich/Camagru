@@ -39,6 +39,7 @@ class Password extends Controller {
 						'salt' => $salt,
 						'token' => Input::get('token')
 					));
+					Session::delete($this->_sessionName);
 			 	} catch (Exception $e) {
 			 		die($e->getMessage());
 			 	}

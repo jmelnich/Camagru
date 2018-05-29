@@ -19,8 +19,11 @@ class Add extends Controller {
     public function addPost() {
     	$path = Config::get('img/posts/');
     	$base_str = $_POST['src'];
-    	$uid = time();
-    	$output_file = $path . 'img_' . $uid . '.png';
-    	$this->base64_to_png($base_str, $output_file);
+        $uid = $_POST['uid'];
+        $unique = time();
+        $output_file = $path . 'img_' . $unique . '.png';
+        $this->base64_to_png($base_str, $output_file);
+        $post = new PostModel();
+        $post->add($uid, $output_file);
     }
 }

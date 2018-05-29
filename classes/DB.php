@@ -39,10 +39,12 @@ class DB {
 			if(count($params)) {
 				$x = 1;
 				foreach ($params as $param) {
+					echo $param;
 					$this->_query->bindValue($x, $param);
 					$x++;
 				}
 			}
+			print_r($this->_query);
 			if ($this->_query->execute()) {
 				/* Query is succesful (the bd exists, the table exists*/
 				$this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ);

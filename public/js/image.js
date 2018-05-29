@@ -1,4 +1,4 @@
-import { draw, convert_64 } from './canvas.js';
+import { draw, save } from './canvas.js';
 import { makeBtn } from './button.js';
 
 const uploadHandler = document.getElementById('upload-btn');
@@ -33,24 +33,6 @@ function upload(e) {
     }
 }
 
-function save(e){
-	e.preventDefault();
-	let src = convert_64();
-	/* call to POST method */
-	post(src);
-}
 
-function post(src) {
-	let post = new XMLHttpRequest();
-	let url = "/add";
-	let data = "src=" + src;
-	post.open("POST", url, true);
-	post.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	post.send(data);
-	post.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			let return_data = post.responseText;
-			console.log(return_data);
-		}
-	}
-}
+
+
