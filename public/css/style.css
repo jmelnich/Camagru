@@ -308,3 +308,9 @@ label {
 .hidden {
   display: none;
 }
+
+/* post */
+.post-header-avatar {
+  height: 30px;
+  width: 30px;
+}

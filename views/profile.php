@@ -16,7 +16,7 @@ if ($user->isLoggedIn()) {
 		<div class="container-left">
 			<form enctype="multipart/form-data" action="profile" method="post" class="profile" id="edit-avatar">
 				<div class="form-group">
-					<img class="avatar" src="../<?php echo escape($avatar)?>" alt="Smiley face" height="150" width="150">
+					<img class="avatar" src="../<?php echo escape($avatar); ?>" alt="Smiley face" height="150" width="150">
 					<label class="profile__pic-uploader" title="Change picture">Change photo</label>
 					<input type="file" name="picture" accept="image/*">
 				<input type="hidden" name="token" value="<?php echo Token::generate();?>">

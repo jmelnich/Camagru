@@ -13,4 +13,12 @@ class PostModel extends Model {
 		}
 		echo 'success';
 	}
+
+	public function get() {
+		$sql = "SELECT * FROM posts";
+		$this->_db->query($sql);
+		$obj = $this->_db->results();
+		$array = json_decode(json_encode($obj), True);
+		return $array;
+	}
 }

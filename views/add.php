@@ -1,3 +1,10 @@
+<?php
+$user = new UserModel();
+if ($user->isLoggedIn()) {
+    echo 'ok';
+} else {
+	header('Location: 404');
+}?>
 <div class="container">
 	<div class="filters">
 		<h2>Choose a frame</h2>

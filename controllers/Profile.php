@@ -52,7 +52,6 @@ class Profile extends Controller {
 
 
 	public function editDetails() {
-		echo "test";
 		$validate = new Validation();
 		$validation = $validate->check($_POST, array(
 			'username' => array(
