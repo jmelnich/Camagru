@@ -1,4 +1,5 @@
-import { makeBase } from './canvas.js';
+import { WIDTH, HEIGTH } from './constants.js';
+import { draw } from './canvas.js';
 import { makeBtn } from './button.js';
 
 const form = document.getElementById('add-img');
@@ -13,12 +14,12 @@ navigator.getMedia = navigator.getUserMedia ||
                     navigator.msGetUserMedia;
 
 const constraints = {
-    video: {width: 400, height: 300},
+    video: {width: WIDTH, height: HEIGTH},
     audio: false
 };
 
 navigator.mediaDevices.getUserMedia(constraints).then(function(mediaStream) {
-    video.src = vendorUrl.createObjectURL(mediaStream);
+    video.srcObject = mediaStream;
     video.onloadedmetadata = function(e) {
         video.play();
         form.style.display = 'none';
@@ -32,10 +33,10 @@ navigator.mediaDevices.getUserMedia(constraints).then(function(mediaStream) {
 captureBtn.addEventListener('click', capture);
 
 function capture () {
-    canvas.getContext('2d').drawImage(video, 0, 0, 400, 300);
+    canvas.getContext('2d').drawImage(video, 0, 0, WIDTH, HEIGTH);
     if (document.getElementsByClassName('chosen')[0]) {
         const frame = document.getElementsByClassName('chosen')[0].src;
-        makeBase(frame);
+        draw(frame);
     }
     if (!document.getElementById('save')) {
         let parent = document.getElementsByClassName('canvas-container')[0];

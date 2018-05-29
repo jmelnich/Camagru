@@ -30,5 +30,6 @@ $GLOBALS['config'] = array(
 	),
 	'img' => array(
 		'avatars' => 'public/img/avatars/',
+		'posts' => 'public/img/posts/'
 	)
 );

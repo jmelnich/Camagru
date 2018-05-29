@@ -21,8 +21,7 @@
 		<video id="video"></video>
 		<button id="capture" class="btn btn-primary">Take snapshot</button>
 	</div>
-	<form action="add" method="post" class="canvas-container">
+	<div class="canvas-container">
 		<canvas id="canvas" width="400" height="300"></canvas>
-		<input type="hidden" />
-	</form>
+	</div>
 </div>
