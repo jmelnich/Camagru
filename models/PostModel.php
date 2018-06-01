@@ -21,4 +21,10 @@ class PostModel extends Model {
 		$array = json_decode(json_encode($obj), True);
 		return $array;
 	}
+
+	public function delete($id){
+		$this->_db->delete('posts', array(
+			'id', '=', $id
+		));
+	}
 }

@@ -15,18 +15,19 @@ if ($user->isLoggedIn()) {
 }
 ?>
 
-<div class="container">
+<div class="container" id="feed">
 
 <?php
 $posts = new PostModel();
 $posts = $posts->get();
 
 foreach ($posts as $post) {
- $user_post = new UserModel($post['uid']);
- $username_post = $user_post->data()->username;
- $username_avatar = $user_post->data()->avatar;
- ?>
-	<div class="post">
+	$user_post = new UserModel($post['uid']);
+	$username_post = $user_post->data()->username;
+	$username_avatar = $user_post->data()->avatar;
+
+ 	?>
+	<div id=<?php echo escape($post['id']);?> class="post">
 		<div class="post-header">
 			<img class="post-header-avatar" src="../<?php echo escape($username_avatar);?>" alt="">
 			<span class="post-header-username"><?php echo escape($username_post);?></span>
@@ -35,7 +36,7 @@ foreach ($posts as $post) {
 		<img class="post-img" src="../<?php echo escape($post['isrc']);?>" alt="">
 		<div class="post-footer">
 			<i class="fa fa-heart-o"></i>
-			<i class="fa fa-trash-o"></i>
+			<i value="<?php echo escape($post['id']);?>" class="fa fa-trash-o"></i>
 		</div>
 		<div class=post-comment>
 			<form>
@@ -44,7 +45,20 @@ foreach ($posts as $post) {
 			</form>
 		</div>
 	</div>
-<?php
+	<?php
 }
 ?>
+</div>
+
+<!-- The Modal -->
+<div id="delete-modal" class="modal">
+  <!-- Modal content -->
+	<div class="delete-modal-content">
+		<span class="close">&times;</span>
+		<p>Are you sure you want to delete this post?</p>
+		<div class="delete-modal-content-btn">
+			<button id="yes" class="btn btn-primary">Yes</button>
+			<button id="no" class="btn btn-primary">No</button>
+		</div>
+	</div>
 </div>

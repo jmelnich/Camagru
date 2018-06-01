@@ -1,5 +1,5 @@
 import { WIDTH, HEIGTH } from './constants.js';
-import { post } from './post.js';
+import { addPost } from './post.js';
 
 const canvas = document.getElementById('canvas');
 const context = canvas.getContext('2d');
@@ -26,5 +26,5 @@ export function save(e){
 	e.preventDefault();
 	let src = convert_64();
 	let uid = getUID();
-	post(src, uid);
+	addPost(src, uid);
 }

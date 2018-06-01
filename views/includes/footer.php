@@ -9,5 +9,6 @@
     <script type="module" src="public/js/button.js"></script>
     <script type="module" src="public/js/image.js"></script>
     <script type="module" src="public/js/post.js"></script>
+    <script type="module" src="public/js/events.js"></script>
     </body>
 </html>
