@@ -15,7 +15,7 @@ class PostModel extends Model {
 	}
 
 	public function get() {
-		$sql = "SELECT * FROM posts";
+		$sql = "SELECT * FROM posts ORDER BY time DESC";
 		$this->_db->query($sql);
 		$obj = $this->_db->results();
 		$array = json_decode(json_encode($obj), True);

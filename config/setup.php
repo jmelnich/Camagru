@@ -15,7 +15,7 @@ $createUsers = "CREATE TABLE IF NOT EXISTS `users`
 		`salt` varchar(64) NOT NULL,
 		`token` varchar(255),
 		`activation` tinyint(1) NOT NULL DEFAULT '0',
-		`avatar` varchar(50) DEFAULT 'public/img/avatars/default.png',
+		`avatar` varchar(250) DEFAULT 'public/img/avatars/default.png',
 		`notification` tinyint(1) NOT NULL DEFAULT '1'
 	);";
 

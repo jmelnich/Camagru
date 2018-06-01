@@ -1,7 +1,7 @@
 <?php
 $user = new UserModel();
 if ($user->isLoggedIn()) {
-    echo 'ok';
+    echo 'user isLoggedIn';
 } else {
 	header('Location: 404');
 }?>
@@ -29,6 +29,6 @@ if ($user->isLoggedIn()) {
 		<button id="capture" class="btn btn-primary">Take snapshot</button>
 	</div>
 	<div class="canvas-container">
-		<canvas id="canvas" width="400" height="300"></canvas>
+		<canvas id="canvas" width="600" height="450"></canvas>
 	</div>
 </div>

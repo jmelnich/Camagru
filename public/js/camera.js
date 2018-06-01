@@ -40,7 +40,7 @@ function capture () {
     }
     if (!document.getElementById('save')) {
         let parent = document.getElementsByClassName('canvas-container')[0];
-        makeBtn('save', parent);
+        let saveBtn = makeBtn('save', parent);
         saveBtn.addEventListener('click', save);
     }
 }

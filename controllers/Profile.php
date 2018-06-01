@@ -30,9 +30,10 @@ class Profile extends Controller {
 		));
 		if ($validate->passed()) {
 			$name = $_FILES['picture']['name'];
+			echo $name;
+			echo '<br>';
 			$path = Config::get('img/avatars');
 			$target = $path . $name;
-			//echo $target;
 			$user = new UserModel();
 			try {
 				$user->update(array(
