@@ -32,3 +32,10 @@ if ($user->isLoggedIn()) {
 		<canvas id="canvas" width="600" height="450"></canvas>
 	</div>
 </div>
+	<script src="public/js/filters.js"></script>
+	<script type="module" src="public/js/constants.js"></script>
+    <script type="module" src="public/js/canvas.js"></script>
+    <script type="module" src="public/js/camera.js"></script>
+    <script type="module" src="public/js/button.js"></script>
+    <script type="module" src="public/js/image.js"></script>
+    <script type="module" src="public/js/post.js"></script>

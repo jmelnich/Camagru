@@ -8,10 +8,13 @@ if (Session::exists('recovery')) {
 
 $user = new UserModel();
 if ($user->isLoggedIn()) {
+	$uid = $user->data()->id;
     $username = $user->data()->username;
     $first_name = ucfirst($user->data()->first_name);
     $last_name = ucfirst($user->data()->last_name);
     $avatar =$user->data()->avatar;
+} else {
+	$uid = '';
 }
 ?>
 
@@ -34,16 +37,45 @@ foreach ($posts as $post) {
 			<div class="post-header-timestamp"><?php echo escape($post['time']);?></div>
 		</div>
 		<img class="post-img" src="../<?php echo escape($post['isrc']);?>" alt="">
+		<?php if ($uid) { ?>
 		<div class="post-footer">
-			<i class="fa fa-heart-o"></i>
-			<i value="<?php echo escape($post['id']);?>" class="fa fa-trash-o"></i>
+			<section class="post-footer-events">
+				<i value="<?php echo escape($post['id']);?>" class="fa fa-heart-o"></i>
+				<?php if ($uid === $user_post->data()->id) {
+					?>
+				<i value="<?php echo escape($post['id']);?>" class="fa fa-trash-o"></i>
+				<?php }?>
+			</section>
+		</div>
+		<div class="section-comments">
+			<ul>
+				<?php
+				$comments = new CommentModel();
+				$comments = $comments->get($post['id']);
+				foreach ($comments as $comment) {
+					$user_comment = new UserModel($comment['uid']);
+					$username_comment = $user_comment->data()->username;
+					$username_comment_avatar = $user_comment->data()->avatar;
+				?>
+					<li class="li-comment">
+						<div class="post-comment-header">
+							<img class="post-comment-header-avatar" src="../<?php echo escape($username_comment_avatar);?>" alt="">
+							<span class="post-header-username"><?php echo escape($username_comment);?></span>
+							<p class="comment"><?php echo escape($comment['text']);?></p>
+						</div>
+					</li>
+				<?php
+				}
+				?>
+			</ul>
 		</div>
 		<div class=post-comment>
-			<form>
+			<form value="<?php echo escape($post['id']);?>">
 				<textarea placeholder="Comment..."></textarea>
-				<button id="comment" class="btn btn-primary">Comment</button>
+				<button value="<?php echo escape($post['id']);?>" class="btn btn-primary">Comment</button>
 			</form>
 		</div>
+		<?php } ?>
 	</div>
 	<?php
 }
@@ -62,3 +94,6 @@ foreach ($posts as $post) {
 		</div>
 	</div>
 </div>
+
+<script type="module" src="public/js/post.js"></script>
+<script type="module" src="public/js/events.js"></script>

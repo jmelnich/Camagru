@@ -330,6 +330,14 @@ label {
   padding: 10px;
 }
 
+.post-comment-header{
+    padding: 0 10px;
+    display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+
 .post-header-username{
   font-weight: 600;
   padding: 10px;
@@ -349,6 +357,12 @@ label {
   border-radius: 50%;
   height: 30px;
   width: 30px;
+}
+
+.post-comment-header-avatar{
+    border-radius: 50%;
+  height: 25px;
+  width: 25px;
 }
 
 .post-footer{
@@ -421,4 +435,12 @@ label {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+.post-footer-events {
+  margin: 0 25px;
+}
+
+.section-comments{
+  margin-bottom: 20px;
 }
