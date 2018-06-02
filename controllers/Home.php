@@ -11,6 +11,11 @@ class Home extends Controller {
 	        	case 'addcomment':
 	        		$this->addComment();
 	        		break;
+                case 'addlike':
+                    $this->addLike();
+                    break;
+                case 'dislike':
+                    $this->disLike();
 	        	default:
 	        		# code...
 	        		break;
@@ -25,14 +30,26 @@ class Home extends Controller {
     	$post->delete($pid);
     }
 
-    public function addComment(){
-    	echo ('addComment');
+    public function addComment() {
     	$pid = $_POST['pid'];
     	$uid = $_POST['uid'];
     	$comment = $_POST['comment'];
     	$p_comment = new CommentModel();
     	$p_comment->add($pid, $uid, $comment);
+    }
 
+    public function addLike() {
+        echo "addLike post";
+        $pid = $_POST['pid'];
+        $uid = $_POST['uid'];
+        $like = new LikeModel();
+        $like->like($pid, $uid);
+    }
 
+        public function disLike() {
+        $pid = $_POST['pid'];
+        $uid = $_POST['uid'];
+        $like = new LikeModel();
+        $like->dislike($pid, $uid);
     }
 }

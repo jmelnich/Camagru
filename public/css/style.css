@@ -50,10 +50,18 @@ body {
   line-height: 1.42857143;
   color: #333; }
 
+h2 {
+  font-weight: 800;
+  font-size: 1.8em;
+  text-align: center;
+  margin: 0 0 40px;
+}
+
 h3 {
   font-weight: 800;
-  font-size: 1.7em;
+  font-size: 1.6em;
   text-align: center;
+  margin: 0 0 40px;
 }
 
 .text a{
@@ -66,7 +74,22 @@ h3 {
   white-space: nowrap;
   padding-top: 80px;
   padding-bottom: 20px;
-  max-width: 960px; }
+  max-width: 1200px; }
+
+.container-capture{
+  min-width: 616px;
+}
+
+.container-gallery{
+  width: 400px;
+}
+
+
+.container-flex{
+  display: flex;
+  justify-content: space-between;
+}
+
 
 /* header */
 header {
@@ -275,13 +298,18 @@ label {
     display: none;
 }
 
-.filters, .img-container, .camera-container, .canvas-container {
+.img-container, .camera-container, .canvas-container {
   margin: 60px auto;
 }
 
-.filter-list {
+.filter-list, .gallery-list {
   display: flex;
   justify-content: space-around;
+  margin: 60px 0;
+}
+
+.gallery-list{
+  flex-wrap: wrap;
 }
 
 .filter-list li {
@@ -312,6 +340,12 @@ label {
 
 .hidden {
   display: none;
+}
+
+/*thumb gallery */
+img.thumb{
+  width: 130px;
+  height: 100px;
 }
 
 /* post */
@@ -370,10 +404,14 @@ label {
   justify-content: flex-end;
   align-items: center;
 }
-.post-footer .fa-trash-o, .fa-heart-o, .fa-comment-o {
+.post-footer .fa-trash-o, .fa-heart-o, .fa-comment-o, .fa-heart {
   font-size: 24px;
   padding: 10px;
   cursor: pointer;
+}
+
+.fa-heart{
+  color: #ff3232;
 }
 
 .post-comment textarea {

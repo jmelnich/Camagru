@@ -33,6 +33,7 @@ navigator.mediaDevices.getUserMedia(constraints).then(function(mediaStream) {
 captureBtn.addEventListener('click', capture);
 
 function capture () {
+    console.log(canvas);
     canvas.getContext('2d').drawImage(video, 0, 0, WIDTH, HEIGTH);
     if (document.getElementsByClassName('chosen')[0]) {
         const frame = document.getElementsByClassName('chosen')[0].src;

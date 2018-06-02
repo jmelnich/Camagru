@@ -1,4 +1,5 @@
 function sendRequest(url, data) {
+	console.log(url + ' ' + data);
 	let post = new XMLHttpRequest();
 	post.open("POST", url, true);
 	post.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -26,5 +27,17 @@ export function delPost(pid) {
 export function addComment(pid, uid, comment) {
 	let url = "/index";
 	let data = "pid=" + pid + "&uid=" + uid + "&comment=" + comment + "&request=addcomment";
+	sendRequest(url, data);
+}
+
+export function like(pid, uid) {
+	let url = "/index";
+	let data = "pid=" + pid + "&uid=" + uid + "&request=addlike";
+	sendRequest(url, data);
+}
+
+export function dislike(pid, uid) {
+	let url = "/index";
+	let data = "pid=" + pid + "&uid=" + uid + "&request=dislike";
 	sendRequest(url, data);
 }

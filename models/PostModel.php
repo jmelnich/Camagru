@@ -27,4 +27,13 @@ class PostModel extends Model {
 			'id', '=', $id
 		));
 	}
+
+	public function getRecent($uid, $quantity) {
+		$this->_db->get('posts', array(
+			'uid', '=', $uid
+		));
+		$obj = $this->_db->results();
+		$array = json_decode(json_encode($obj), True);
+		return $array;
+	}
 }

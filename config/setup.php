@@ -56,3 +56,10 @@ $createComments = "CREATE TABLE IF NOT EXISTS `comments`
 		`text` varchar(255) NOT NULL,
 		`time` DATETIME DEFAULT NOW()
 	);";
+
+$createLikes = "CREATE TABLE IF NOT EXISTS `likes`
+(
+	`id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	`pid` int(11) NOT NULL,
+	`uid` int(11) NOT NULL
+);";

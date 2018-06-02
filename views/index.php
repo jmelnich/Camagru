@@ -40,7 +40,15 @@ foreach ($posts as $post) {
 		<?php if ($uid) { ?>
 		<div class="post-footer">
 			<section class="post-footer-events">
+				<?php
+				$like = new LikeModel();
+				$isLiked = $like->isLiked($post['id'], $uid);
+				if ($isLiked) {
+				?>
+				<i value="<?php echo escape($post['id']);?>" class="fa fa-heart"></i>
+				<?php } else {?>
 				<i value="<?php echo escape($post['id']);?>" class="fa fa-heart-o"></i>
+				<?php } ?>
 				<?php if ($uid === $user_post->data()->id) {
 					?>
 				<i value="<?php echo escape($post['id']);?>" class="fa fa-trash-o"></i>

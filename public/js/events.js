@@ -1,4 +1,4 @@
-import { delPost, addComment } from './post.js';
+import { delPost, addComment, like, dislike } from './post.js';
 
 let feed = document.getElementById('feed');
 feed.addEventListener('click', checkEvent);
@@ -8,17 +8,18 @@ function checkEvent(e){
 	let target = e.target;
 	let pid = target.getAttribute('value');
 	let uid = document.getElementById('uid').innerHTML;
-	console.log(target);
 	switch (target.className) {
 		case 'fa fa-trash-o':
 			deleteConfirm(pid);
 			break;
 		case 'fa fa-heart-o':
-			like();
+			like(pid, uid);
 			break;
+		case 'fa fa-heart':
+			dislike(pid, uid);
 		case 'btn btn-primary':
 			let comment = (target.parentNode.childNodes[1].value).trim();
-			if (comment === '') {
+			if (comment === 'f004') {
 				error(target);
 			} else {
 				addComment(pid, uid, comment);
@@ -56,8 +57,3 @@ function deleteConfirm(id) {
 		delPost(id);
 	}
 }
-
-function like(id) {
-	console.log('like');
-}
-
