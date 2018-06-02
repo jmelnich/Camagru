@@ -12,7 +12,7 @@ if ($user->isLoggedIn()) {
 	header('Location: 404');
 }?>
 <div class="container">
-		<h3 class="panel-title">Profile info</h3>
+	<div class="container-flex">
 		<div class="container-left">
 			<form enctype="multipart/form-data" action="profile" method="post" class="profile" id="edit-avatar">
 				<div class="form-group">
@@ -28,6 +28,7 @@ if ($user->isLoggedIn()) {
 			</form>
 		</div>
 		<div class="container-right">
+		<h3 class="panel-title">Profile info</h3>
 			<form action="profile" method="post" class="profile" id="edit-profile">
 				<div class="form-group">
 					<label for="name">Username</label>
@@ -47,12 +48,18 @@ if ($user->isLoggedIn()) {
 				</button>
 			</form>
 		</div>
+	</div>
 
-
-		<h3 class="panel-title">Change password</h3>
+	<div class="container-flex">
 		<div class="container-left">
+			<h3 class="panel-title">Manage email notifications</h3>
+			<div class="form-group">
+				<input id="notifications" type="checkbox" checked>
+				<label for="notifications">Notify me about comments and likes for my posts</label>
+			</div>
 		</div>
 		<div class="container-right">
+			<h3 class="panel-title">Change password</h3>
 			<form action="profile" class="profile" method="post" id="edit-password">
 				<div class="form-group">
 					<label for="name">Current password</label>
@@ -72,8 +79,7 @@ if ($user->isLoggedIn()) {
 				</button>
 			</form>
 		</div>
+	</div>
+</div>
 
-
-
-
-  </div>
+<script type="module" src="public/js/notifications.js"></script>

@@ -107,5 +107,4 @@ foreach ($posts as $post) {
 	</div>
 </div>
 
-<script type="module" src="public/js/post.js"></script>
 <script type="module" src="public/js/events.js"></script>
