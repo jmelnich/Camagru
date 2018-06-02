@@ -27,6 +27,14 @@ class LikeModel extends Model {
 		return false;
 	}
 
+	public function getQuantity($pid) {
+		$this->_db->get('likes', array(
+			'pid', '=', $pid
+		));
+		$quantity = $this->_db->count();
+		return $quantity > 0 ? $quantity : '';
+	}
+
 	public function dislike($pid, $uid){
 		$this->_db->get('likes', array(
 			'pid', '=', $pid

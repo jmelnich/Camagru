@@ -42,6 +42,10 @@ foreach ($posts as $post) {
 			<section class="post-footer-events">
 				<?php
 				$like = new LikeModel();
+				$quantity_likes = $like->getQuantity($post['id']);
+				?>
+				<span><?php echo escape($quantity_likes);?></span>
+				<?php
 				$isLiked = $like->isLiked($post['id'], $uid);
 				if ($isLiked) {
 				?>

@@ -14,9 +14,22 @@ function checkEvent(e){
 			break;
 		case 'fa fa-heart-o':
 			like(pid, uid);
+			target.classList.remove('fa-heart-o');
+			target.classList.add('fa-heart');
+			let q_span = target.parentNode.childNodes[1];
+			q_span.innerHTML = ++q_span.innerHTML;
 			break;
 		case 'fa fa-heart':
 			dislike(pid, uid);
+			target.classList.remove('fa-heart');
+			target.classList.add('fa-heart-o');
+			let q_span_min = target.parentNode.childNodes[1];
+			if (q_span_min.innerHTML == 1) {
+				q_span_min.innerHTML = '';
+			} else {
+				q_span_min.innerHTML = --q_span_min.innerHTML;
+			}
+			break;
 		case 'btn btn-primary':
 			let comment = (target.parentNode.childNodes[1].value).trim();
 			if (comment === 'f004') {
@@ -24,6 +37,7 @@ function checkEvent(e){
 			} else {
 				addComment(pid, uid, comment);
 			}
+			break;
 		default:
 			break;
 	}
