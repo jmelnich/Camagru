@@ -24,11 +24,4 @@ class CommentModel extends Model {
 		}
 		echo 'success';
 	}
-
-
-	// public function delete($id){
-	// 	$this->_db->delete('posts', array(
-	// 		'id', '=', $id
-	// 	));
-	// }
 }

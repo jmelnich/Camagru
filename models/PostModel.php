@@ -11,7 +11,6 @@ class PostModel extends Model {
 				'isrc' => $file
 			));
 		}
-		echo 'success';
 	}
 
 	public function get() {
@@ -35,5 +34,14 @@ class PostModel extends Model {
 		$obj = $this->_db->results();
 		$array = json_decode(json_encode($obj), True);
 		return $array;
+	}
+
+	public function findOwner($pid) {
+		$this->_db->get('posts', array(
+			'id', '=', $pid
+		));
+		$obj = $this->_db->first();
+		$post = json_decode(json_encode($obj), True);
+		return $post['uid'];
 	}
 }

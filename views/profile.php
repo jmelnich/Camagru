@@ -8,6 +8,7 @@ if ($user->isLoggedIn()) {
     $first_name = ucfirst($user->data()->first_name);
     $last_name = ucfirst($user->data()->last_name);
     $avatar =$user->data()->avatar;
+    $notify = $user->data()->notification;
 } else {
 	header('Location: 404');
 }?>
@@ -54,7 +55,11 @@ if ($user->isLoggedIn()) {
 		<div class="container-left">
 			<h3 class="panel-title">Manage email notifications</h3>
 			<div class="form-group">
-				<input id="notifications" type="checkbox" checked>
+				<input id="notifications" type="checkbox"
+				<?php if ($notify == 1) {?>
+				checked
+				<?php }?>
+				>
 				<label for="notifications">Notify me about comments and likes for my posts</label>
 			</div>
 		</div>

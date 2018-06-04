@@ -30,12 +30,30 @@ class Home extends Controller {
     	$post->delete($pid);
     }
 
+    private function sendNotification($pid, $activity) {
+        $owner_post = new PostModel();
+        $owner_id = $owner_post->findOwner($pid);
+        $owner = new UserModel($owner_id);
+        $is_notify = $owner->data()->notification;
+        if ($is_notify == 1) {
+            $email = $owner->data()->email;
+            $mail = new Email();
+            if ($activity === 'comment') {
+                $mail->notifyAboutComment($email);
+            } else if ($activity === 'like') {
+                $mail->notifyAboutLike($email);
+            }
+        }
+    }
+
     public function addComment() {
-    	$pid = $_POST['pid'];
-    	$uid = $_POST['uid'];
-    	$comment = $_POST['comment'];
-    	$p_comment = new CommentModel();
-    	$p_comment->add($pid, $uid, $comment);
+        $pid = $_POST['pid'];
+        $uid = $_POST['uid'];
+        $comment = $_POST['comment'];
+        $p_comment = new CommentModel();
+        $p_comment->add($pid, $uid, $comment);
+        $activity = 'comment';
+        $this->sendNotification($pid, $activity);
     }
 
     public function addLike() {
@@ -44,12 +62,14 @@ class Home extends Controller {
         $uid = $_POST['uid'];
         $like = new LikeModel();
         $like->like($pid, $uid);
+        $activity = 'like';
+        $this->sendNotification($pid, $activity);
     }
 
-        public function disLike() {
-        $pid = $_POST['pid'];
-        $uid = $_POST['uid'];
-        $like = new LikeModel();
-        $like->dislike($pid, $uid);
-    }
+    public function disLike() {
+    $pid = $_POST['pid'];
+    $uid = $_POST['uid'];
+    $like = new LikeModel();
+    $like->dislike($pid, $uid);
+}
 }

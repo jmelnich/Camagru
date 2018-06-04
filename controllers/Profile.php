@@ -13,6 +13,37 @@ class Profile extends Controller {
 		else if (isset($_POST['submit-password'])) {
 			$this->editPassword();
 		}
+		else if (isset($_POST['request'])){
+			switch ($_POST['request']) {
+				case 'unnotify':
+					echo 'this uun';
+					$this->unnotify();
+					break;
+				case 'notify':
+					echo 'this not';
+					$this->notify();
+					break;
+				default:
+					# code...
+					break;
+			}
+		}
+	}
+
+	public function unnotify() {
+		$uid = $_POST['uid'];
+		$user = new UserModel();
+		$user->update(array(
+			'notification' => 0
+		));
+	}
+
+	public function notify() {
+		$uid = $_POST['uid'];
+		$user = new UserModel();
+		$user->update(array(
+			'notification' => 1
+		));
 	}
 
 	public function uploadPhoto() {

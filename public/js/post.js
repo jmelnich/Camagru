@@ -6,6 +6,7 @@ function sendRequest(url, data) {
 	post.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			let return_data = post.responseText;
+			//console.log(return_data);
 			window.location.href = 'index';
 		}
 	}
@@ -15,10 +16,12 @@ function sendRequestNorefresh(url, data) {
 	let post = new XMLHttpRequest();
 	post.open("POST", url, true);
 	post.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	console.log('passing data = ' + data);
 	post.send(data);
 	post.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			let return_data = post.responseText;
+			//console.log(return_data);
 		}
 	}
 }
@@ -53,3 +56,16 @@ export function dislike(pid, uid) {
 	sendRequestNorefresh(url, data);
 }
 
+export function unnotify(uid) {
+	let url = "/profile";
+	let data = "uid=" + uid + "&request=unnotify";
+	console.log('forming data' + data);
+	sendRequestNorefresh(url, data);
+}
+
+export function notify(uid) {
+	let url = "/profile";
+	let data = "uid=" + uid + "&request=notify";
+	console.log('forming data' + data);
+	sendRequestNorefresh(url, data);
+}
