@@ -25,6 +25,12 @@ class PostModel extends Model {
 		return $array;
 	}
 
+	public function count() {
+		$sql = "SELECT * FROM posts";
+		$this->_db->query($sql);
+		return $this->_db->count();
+	}
+
 	public function delete($id){
 		$this->_db->delete('posts', array(
 			'id', '=', $id

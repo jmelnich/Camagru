@@ -24,8 +24,7 @@ if ($user->isLoggedIn()) {
 $posts_per_page = 5;
 $posts = new PostModel();
 /* get all posts to know how many pages for pagination I need */
-$all_posts = $posts->get();
-$number_f_posts = count($all_posts);
+$number_f_posts = $posts->count();
 $number_f_pages = ceil($number_f_posts/$posts_per_page);
 /* get info about my current page */
 if(!isset($_GET['page'])) {
