@@ -16,11 +16,9 @@ class Profile extends Controller {
 		else if (isset($_POST['request'])){
 			switch ($_POST['request']) {
 				case 'unnotify':
-					echo 'this uun';
 					$this->unnotify();
 					break;
 				case 'notify':
-					echo 'this not';
 					$this->notify();
 					break;
 				default:

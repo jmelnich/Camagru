@@ -13,8 +13,12 @@ class PostModel extends Model {
 		}
 	}
 
-	public function get() {
-		$sql = "SELECT * FROM posts ORDER BY time DESC";
+	public function get($starting_limit = null, $posts_per_page = null) {
+		if ($posts_per_page) {
+			$sql = "SELECT * FROM posts ORDER BY time DESC LIMIT " . $starting_limit . ',' . $posts_per_page;
+		} else {
+			$sql = "SELECT * FROM posts ORDER BY time DESC";
+		}
 		$this->_db->query($sql);
 		$obj = $this->_db->results();
 		$array = json_decode(json_encode($obj), True);

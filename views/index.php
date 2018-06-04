@@ -21,10 +21,26 @@ if ($user->isLoggedIn()) {
 <div class="container" id="feed">
 
 <?php
+$posts_per_page = 5;
 $posts = new PostModel();
-$posts = $posts->get();
+/* get all posts to know how many pages for pagination I need */
+$all_posts = $posts->get();
+$number_f_posts = count($all_posts);
+$number_f_pages = ceil($number_f_posts/$posts_per_page);
+/* get info about my current page */
+if(!isset($_GET['page'])) {
+	$page = 1;
+} else {
+	$page = $_GET['page'];
+}
 
-foreach ($posts as $post) {
+/* calculate my starting limit for sql request */
+$starting_limit = ($page - 1) * $posts_per_page;
+
+$paginated_posts = $posts->get($starting_limit, $posts_per_page);
+
+
+foreach ($paginated_posts as $post) {
 	$user_post = new UserModel($post['uid']);
 	$username_post = $user_post->data()->username;
 	$username_avatar = $user_post->data()->avatar;
@@ -81,7 +97,7 @@ foreach ($posts as $post) {
 				?>
 			</ul>
 		</div>
-		<div class=post-comment>
+		<div class="post-comment">
 			<form value="<?php echo escape($post['id']);?>">
 				<textarea placeholder="Comment..."></textarea>
 				<button value="<?php echo escape($post['id']);?>" class="btn btn-primary">Comment</button>
@@ -93,6 +109,13 @@ foreach ($posts as $post) {
 }
 ?>
 </div>
+	<div class="pagination">
+		<?php
+		for ($page = 1; $page <= $number_f_pages; $page++) {
+			echo '<a href="index?page=' . $page . '">' . $page . '</a>';
+		}
+		?>
+	</div>
 
 <!-- The Modal -->
 <div id="delete-modal" class="modal">

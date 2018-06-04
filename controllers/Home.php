@@ -57,7 +57,6 @@ class Home extends Controller {
     }
 
     public function addLike() {
-        echo "addLike post";
         $pid = $_POST['pid'];
         $uid = $_POST['uid'];
         $like = new LikeModel();
@@ -67,9 +66,18 @@ class Home extends Controller {
     }
 
     public function disLike() {
-    $pid = $_POST['pid'];
-    $uid = $_POST['uid'];
-    $like = new LikeModel();
-    $like->dislike($pid, $uid);
+        $pid = $_POST['pid'];
+        $uid = $_POST['uid'];
+        $like = new LikeModel();
+        $like->dislike($pid, $uid);
+    }
 }
-}
+
+/*
+1) handle click on a tag
+2) make http POST request
+3) pass url num page
+4) Home Controller generate $this->view->render('index2', dinamic data for sql request); <---- those pages dont exist
+
+
+*/
