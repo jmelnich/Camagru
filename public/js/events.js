@@ -31,9 +31,11 @@ function checkEvent(e){
 			}
 			break;
 		case 'btn btn-primary':
-			let comment = (target.parentNode.childNodes[1].value).trim();
-			if (comment === 'f004') {
-				error(target);
+			let comment = (target.parentNode.childNodes[2].value).trim();
+			if (comment === '') {
+				error(target, 'This field cannot be empty');
+			} else if (comment.length > 200) {
+				error(target, 'Comment cant be so long');
 			} else {
 				addComment(pid, uid, comment);
 			}
@@ -44,12 +46,13 @@ function checkEvent(e){
 
 }
 
-function error(target) {
-	if (target.parentNode.childNodes[4].innerHTML == 'This field cannot be empty'){
+function error(target, errormsg) {
+	if (target.parentNode.childNodes[4].innerHTML == errormsg){
 		return;
 	}
 	let p = document.createElement("p");
-	let node = document.createTextNode('This field cannot be empty');
+	p.classList.add('error');
+	let node = document.createTextNode(errormsg);
 	p.appendChild(node);
 	target.parentNode.insertBefore(p, target.nextSibling);
 }

@@ -1,5 +1,5 @@
 <div class="container">
-	<form id="faq" action="faq" method="POST">
+	<form class="form" id="faq" action="faq" method="POST">
 		<div class="form-group">
 				<label>*Your question or suggestion</label>
 				<textarea type="text" class="form-control-text" name="text" value="<?php echo escape(Input::get('text')); ?>"><?php echo escape(Input::get('text')); ?></textarea>
@@ -12,7 +12,6 @@
 			<label>*Yor email</label>
 			<input type="text" class="form-control" name="email" value="<?php echo escape(Input::get('email')); ?>">
 		</div>
-		<span class="error"><?php echo $data?></span>
 		<button type="submit" name="submit" class="btn btn-primary">Send</button>
 	</form>
 </div>

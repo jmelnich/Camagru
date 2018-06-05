@@ -13,6 +13,7 @@ if ($user->isLoggedIn()) {
 	header('Location: 404');
 }?>
 <div class="container">
+	<div class="form">
 	<div class="container-flex">
 		<div class="container-left">
 			<form enctype="multipart/form-data" action="profile" method="post" class="profile" id="edit-avatar">
@@ -85,6 +86,7 @@ if ($user->isLoggedIn()) {
 			</form>
 		</div>
 	</div>
+</div>
 </div>
 
 <script type="module" src="public/js/notifications.js"></script>

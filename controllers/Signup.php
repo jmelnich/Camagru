@@ -70,15 +70,20 @@ class Signup extends Controller {
 				$mail = new Email();
 				$link =  "<a href='" . $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . "/profile/active/token=" . Input::get('token') . "&email=" . Input::get('email') . "'>this link</a>.\n";
 				$mail->activate(Input::get('email'), $link);
-				Session::flash('success','Your register successfully! Check your email for activation');
+				Session::flash('success','<div class="success-manager"> Your register successfully! Check your email for activation</div>');
 				header('Location: index');
 			} catch (Exception $e) {
+				echo 'catch in Sign up controller <br/> ';
 				die($e->getMessage()); //TODO: make it user-friendly. Redirect user to a page where we say that 'oops we cannot register you';
 			}
 		} else {
+			?> <div class="error-manager">
+			<?php
 			foreach ($validate->getErrors() as $error) {
-				echo $error . '<br/> ';
+				echo $error . "<br/> ";
 			}
+			?></div>
+			<?php
 		}
 	}
 

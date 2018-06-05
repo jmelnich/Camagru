@@ -159,9 +159,13 @@ class Profile extends Controller {
 				header('Location: profile');
 			}
 		} else {
-			foreach ($validate->getErrors() as $error) {
-				echo $error . '<br/> ';
-			}
-		}
+            ?> <div class="error-manager">
+            <?php
+            foreach ($validate->getErrors() as $error) {
+                echo $error . "<br/> ";
+            }
+            ?></div>
+            <?php
+        }
 	}
 }

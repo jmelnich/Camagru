@@ -30,7 +30,7 @@ class Recovery extends Controller {
 			$mail = new Email();
 			$link =  "<a href='" . $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . "/email/recovery/token=" . Input::get('token') . "&email=" . Input::get('email') . "'>this link</a>.\n";
 			$mail->recover(Input::get('email'), $link);
-			Session::flash('recovery','The link for password recovery has been sent to your email.');
+			Session::flash('recovery','<div class="success-manager" The link for password recovery has been sent to your email.</div>');
 			header('Location: index');
 		 } else {
 		 	foreach ($validate->getErrors() as $error) {

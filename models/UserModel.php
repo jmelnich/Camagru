@@ -95,10 +95,10 @@ class UserModel extends Model {
 						}
 						return true;
 					} else {
-						echo '<br/> passwords dont match <br/>';
+						echo '<div class="error-manager"> incorrect password <br/></div>';
 					}
 				} else {
-					echo '<br/> please activate your account via email <br/>';
+					echo '<div class="error-manager"> please activate your account via email <br/></div>';
 				}
 			}
 		}

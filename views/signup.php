@@ -1,5 +1,5 @@
 <div class="container">
-    <form id="login-form" action="signup" method="post">
+    <form class="form" id="login-form" action="signup" method="post">
         <div class="form-group">
           <label>*Email</label>
           <input type="text" class="form-control" name="email" value="<?php echo escape(Input::get('email')); ?>">
@@ -29,7 +29,6 @@
           <label>*Confirm password</label>
           <input type="password" class="form-control" name="password_confirm" value="">
         </div>
-        <span class="error"><?php echo $data?></span>
         <input type="hidden" name="token" value="<?php echo Token::generate();?>">
         <button type="submit" name="submit" class="btn btn-primary">Sign Up</button>
         <p>Already have account? <span><a href="login">Log in</a><span></p>

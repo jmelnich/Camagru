@@ -29,13 +29,15 @@ class Login extends Controller {
 			$login = $user->login(Input::get('email'), Input::get('password'), $remember);
 			if ($login) {
 				header('Location: index');
-			} else {
-				echo 'sorry, logging failed';
 			}
 		} else {
+			?> <div class="error-manager">
+			<?php
 			foreach ($validate->getErrors() as $error) {
 				echo $error . "<br/> ";
 			}
+			?></div>
+			<?php
 		}
 	}
 

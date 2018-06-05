@@ -14,9 +14,7 @@ class DB {
 		try {
 			$DSN = 'mysql:host=' . Config::get('mysql/host') . ';dbname=' . Config::get('mysql/db') . ';charset=utf8';
 			$this->_pdo = new PDO($DSN, Config::get('mysql/username'), Config::get('mysql/password'));
-			echo "connected";
-			// $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			// return $_pdo;
+			//$this->_pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		} catch (PDOException $e) {
 			echo "Connection failed " . $e->getMessage(). '<br>';
 			die();
@@ -57,6 +55,8 @@ class DB {
 		}
 		return $this;
 	}
+
+
 
 	private function action($action, $table, $where = array()) {
 		/* check if we pass field, operator and value */

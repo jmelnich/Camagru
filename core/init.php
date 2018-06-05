@@ -26,6 +26,8 @@ require_once(ROOT . '/models/LikeModel.php');
 
 /*add page to router and render it in its controller*/
 $router = new Router();
+//$router->add('/setup');
+
 $router->add('/', 'Home');
 $router->add('/index/', 'Home');
 $router->add('/index\?page=[0-9]+/', 'Home');

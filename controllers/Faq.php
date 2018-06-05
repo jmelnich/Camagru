@@ -40,9 +40,13 @@ class Faq extends Controller {
             );
             echo "success";
         } else {
+            ?> <div class="error-manager">
+            <?php
             foreach ($validate->getErrors() as $error) {
-               echo $error . "<br/> ";
+                echo $error . "<br/> ";
             }
+            ?></div>
+            <?php
         }
 
     }

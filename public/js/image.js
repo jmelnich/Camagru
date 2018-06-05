@@ -15,12 +15,14 @@ function preview() {
     if (oFReader.readyState === 1) {
     	let label = document.getElementsByClassName('editor-uploader')[0];
 		let uploadBtn = makeBtn('upload', label);
-		uploadBtn.addEventListener('click', upload);
+        uploadBtn.addEventListener('click', upload);
     }
 };
 
 function upload(e) {
-	e.preventDefault();
+    e.preventDefault();
+    let canvasCont = document.getElementsByClassName('canvas-container')[0];
+    canvasCont.style.display = 'block';
 	draw(imgPreview.src);
 	if (document.getElementsByClassName('chosen')[0]) {
         const frame = document.getElementsByClassName('chosen')[0].src;
