@@ -31,6 +31,7 @@ if ($user->isLoggedIn()) {
 		</div>
 		<div class="container-right">
 		<h3 class="panel-title">Profile info</h3>
+			<hr>
 			<form action="profile" method="post" class="profile" id="edit-profile">
 				<div class="form-group">
 					<label for="name">Username</label>
@@ -55,6 +56,7 @@ if ($user->isLoggedIn()) {
 	<div class="container-flex">
 		<div class="container-left">
 			<h3 class="panel-title">Manage email notifications</h3>
+			<hr>
 			<div class="form-group">
 				<input id="notifications" type="checkbox"
 				<?php if ($notify == 1) {?>
@@ -66,6 +68,7 @@ if ($user->isLoggedIn()) {
 		</div>
 		<div class="container-right">
 			<h3 class="panel-title">Change password</h3>
+			<hr>
 			<form action="profile" class="profile" method="post" id="edit-password">
 				<div class="form-group">
 					<label for="name">Current password</label>

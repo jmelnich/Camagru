@@ -14,8 +14,8 @@ class DB {
 		try {
 			$DSN = 'mysql:host=' . Config::get('mysql/host') . ';dbname=' . Config::get('mysql/db') . ';charset=utf8';
 			$this->_pdo = new PDO($DSN, Config::get('mysql/username'), Config::get('mysql/password'));
-			//$this->_pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		} catch (PDOException $e) {
+			$this->_pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			echo "Connection failed " . $e->getMessage(). '<br>';
 			die();
 		}

@@ -12,6 +12,7 @@ if ($user->isLoggedIn()) {
 	<div class="container-flex">
 		<div class="container-capture">
 			<h2>Add something new!</h2>
+			<hr>
 
 				<h3>Choose a frame</h3>
 				<ul class="filter-list" id="filter-list">
@@ -41,6 +42,7 @@ if ($user->isLoggedIn()) {
 
 		<div class="container-gallery">
 			<h2>Your latest photos</h2>
+			<hr>
 			<ul class="gallery-list">
 			<?php
 			foreach ($recent_posts as $rpost) {
