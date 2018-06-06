@@ -28,12 +28,15 @@ class Add extends Controller {
 			if ($_POST['caption']) {
 				$caption = strip_tags($_POST['caption']);
 				if (strpos($caption, '#')) {
+					$hashes = getMatches($caption);
 					$caption = convertHash($caption);
-					$post->add($uid, $output_file, $caption);
-					//TODO:
-					//get all hashtag words in array
-					//foreach hash word, save it to DB
-					// hashword, pid
+					// $post->add($uid, $output_file, $caption);
+					// $pid = $post->theLatest();
+					// //TODO:
+					// $hashtag = new HashModel();
+					// foreach ($hashes as $hashword) {
+					// 	$hashtag->add($hashword, $pid);
+					// }
 					//create table hastags
 					//get hash url
 					//grab all data where hashword === get

@@ -4,8 +4,13 @@ let feed = document.getElementById('feed');
 feed.addEventListener('click', checkEvent);
 
 function checkEvent(e){
+	/* escape prevent defaults for links (a tag) */
+	if (e.target.nodeName === 'A') {
+		return true;
+	}
 	e.preventDefault();
 	let target = e.target;
+	console.log('caption');
 	let pid = target.getAttribute('value');
 	let uid = document.getElementById('uid').innerHTML;
 	switch (target.className) {

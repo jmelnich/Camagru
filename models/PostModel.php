@@ -31,6 +31,14 @@ class PostModel extends Model {
 		return $array;
 	}
 
+	public function theLatest() {
+		$sql = "SELECT * FROM posts ORDER BY ID DESC LIMIT 1";
+		$this->_db->query($sql);
+		$obj = $this->_db->first();
+		$post = json_decode(json_encode($obj), True);
+		return $post['id'];
+	}
+
 	public function count() {
 		$sql = "SELECT * FROM posts";
 		$this->_db->query($sql);
@@ -60,4 +68,5 @@ class PostModel extends Model {
 		$post = json_decode(json_encode($obj), True);
 		return $post['uid'];
 	}
+
 }

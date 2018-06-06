@@ -33,11 +33,18 @@ if(!isset($_GET['page'])) {
 	$page = $_GET['page'];
 }
 
+// GET posts only by id I need
+//SELECT posts(1, 19, 3)...
+
+if(!isset($_GET['hash'])) {
+	$hashtag = 'all';
+} else {
+	$hashtag = $_GET['hash'];
+	echo $hashtag;
+}
 /* calculate my starting limit for sql request */
 $starting_limit = ($page - 1) * $posts_per_page;
-
 $paginated_posts = $posts->get($starting_limit, $posts_per_page);
-
 
 foreach ($paginated_posts as $post) {
 	$user_post = new UserModel($post['uid']);
@@ -57,7 +64,7 @@ foreach ($paginated_posts as $post) {
 				<?php
 					if (!empty($post['caption'])) {
 						?>
-					<div class="caption"><p><?php echo wordwrap($post['caption'],70, '<br />');?></p></div>
+					<div class="caption"><p><?php echo wordwrap($post['caption'],70, "\n", false);?></p></div>
 					<?php
 					}
 				 ?>

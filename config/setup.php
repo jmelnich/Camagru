@@ -73,5 +73,12 @@ try {
 		`uid` int(11) NOT NULL
 	);";
 
+	$sql .= "CREATE TABLE IF NOT EXISTS `hashtags`
+	(
+		`id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+		`hashword` varchar(255) NOT NULL,
+		`pid` int(11) NOT NULL
+	);";
+
 	$db->query($sql);
 }
