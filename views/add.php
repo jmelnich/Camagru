@@ -9,7 +9,7 @@ if ($user->isLoggedIn()) {
 }?>
 <div class="container">
 	<div class="form">
-	<div class="container-flex">
+	<div class="container-flex-between">
 		<div class="container-capture">
 			<h2>Add something new!</h2>
 			<hr>

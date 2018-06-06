@@ -49,7 +49,7 @@ class Home extends Controller {
     public function addComment() {
         $pid = $_POST['pid'];
         $uid = $_POST['uid'];
-        $comment = $_POST['comment'];
+        $comment = strip_tags($_POST['comment']);
         $p_comment = new CommentModel();
         $p_comment->add($pid, $uid, $comment);
         $activity = 'comment';

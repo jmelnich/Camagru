@@ -13,6 +13,7 @@ spl_autoload_register(function($class) {
 /* Inlcuding functions */
 require_once(ROOT . '/functions/sanitize.php');
 require_once(ROOT . '/functions/getURI.php');
+require_once(ROOT . '/functions/convertHash.php');
 
 /* Inlcuding core files */
 require_once(ROOT . '/core/Router.php');
@@ -31,6 +32,7 @@ $router = new Router();
 $router->add('/', 'Home');
 $router->add('/index/', 'Home');
 $router->add('/index\?page=[0-9]+/', 'Home');
+$router->add('/index\?hash=\w+/', 'Home');
 $router->add('/login', 'Login');
 $router->add('/signup', 'Signup');
 $router->add('/profile', 'Profile');

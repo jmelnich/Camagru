@@ -54,7 +54,14 @@ foreach ($paginated_posts as $post) {
 		<img class="post-img" src="../<?php echo escape($post['isrc']);?>" alt="">
 		<?php if ($uid) { ?>
 		<div class="post-footer">
-			<section class="post-footer-events">
+				<?php
+					if (!empty($post['caption'])) {
+						?>
+					<div class="caption"><p><?php echo wordwrap($post['caption'],70, '<br />');?></p></div>
+					<?php
+					}
+				 ?>
+			<div class="post-footer-events">
 				<?php
 				$like = new LikeModel();
 				$quantity_likes = $like->getQuantity($post['id']);
@@ -72,7 +79,7 @@ foreach ($paginated_posts as $post) {
 					?>
 				<i value="<?php echo escape($post['id']);?>" class="fa fa-trash-o"></i>
 				<?php }?>
-			</section>
+			</div>
 		</div>
 		<div class="section-comments">
 			<ul>

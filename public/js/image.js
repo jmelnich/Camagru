@@ -1,5 +1,5 @@
 import { draw, save } from './canvas.js';
-import { makeBtn } from './button.js';
+import { makeBtn, makeField } from './button.js';
 
 const uploadHandler = document.getElementById('upload-btn');
 const imgPreview = document.getElementById('upload-preview');
@@ -29,12 +29,9 @@ function upload(e) {
         draw(frame);
     }
     if (!document.getElementById('save')) {
-    	let parent = document.getElementsByClassName('canvas-container')[0];
-    	let saveBtn = makeBtn('save', parent);
-    	saveBtn.addEventListener('click', save);
+        let parent = document.getElementsByClassName('canvas-container')[0];
+        makeField(parent);
+        let saveBtn = makeBtn('save', parent);
+        saveBtn.addEventListener('click', save);
     }
 }
-
-
-
-

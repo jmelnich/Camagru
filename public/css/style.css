@@ -99,6 +99,12 @@ h3 {
   flex-wrap: wrap;
 }
 
+.container-flex-between{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
 
 /* header #3498db */
 header {
@@ -457,11 +463,17 @@ img.thumb{
   cursor: pointer;
 }
 
+.caption>p{
+    font-weight: 500;
+    max-width: 420px;
+    padding: 20px;
+}
+
 .fa-heart{
   color: #ff3232;
 }
 
-.post-comment textarea {
+.post-comment textarea, .canvas-container textarea {
     font-size: 14px;
     padding: 5px;
     display: block;
@@ -471,6 +483,12 @@ img.thumb{
     border: none;
     border-top: 1px solid #ccc;
     resize: none;
+}
+
+.canvas-container textarea {
+  width: 95%;
+  border: 1px solid #ccc;
+  margin-top: 1px;
 }
 
 /* Modals */
@@ -652,3 +670,4 @@ hr:after {
     justify-content: center;
   }
 }
+

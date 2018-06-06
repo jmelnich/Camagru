@@ -4,11 +4,7 @@ class Signup extends Controller {
         parent:: __construct();
         $this->view->render('signup');
         if (isset($_POST['submit'])) {
-        	/* TODO:
-        	fix CSRF Protection: check our token (video 12/23)*/
-        	// if (Token::check(Input::get('token'))) {
         		$this->userSignup();
-        	//}
         }
     }
 

@@ -6,8 +6,8 @@ function sendRequest(url, data) {
 	post.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			let return_data = post.responseText;
-			//console.log(return_data);
-			window.location.href = 'index';
+			console.log(return_data);
+			//window.location.href = 'index';
 		}
 	}
 }
@@ -26,9 +26,15 @@ function sendRequestNorefresh(url, data) {
 	}
 }
 
-export function addPost(src, uid) {
+export function addPost(src, uid, caption = null) {
 	let url = "/add";
-	let data = "src=" + src + "&uid=" + uid + "&request=add";
+	let data;
+	if (caption) {
+		data = "src=" + src + "&uid=" + uid + "&caption=" + caption + "&request=add";
+	} else {
+		data = "src=" + src + "&uid=" + uid + "&request=add";
+	}
+	//console.log(data);
 	sendRequest(url, data);
 }
 

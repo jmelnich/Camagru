@@ -4,8 +4,14 @@ class PostModel extends Model {
 		parent::__construct();
 	}
 
-	public function add($uid, $file) {
-		if ($uid && $file) {
+	public function add($uid, $file, $caption = null) {
+		if ($caption) {
+			$this->_db->insert('posts', array(
+				'uid' => $uid,
+				'isrc' => $file,
+				'caption' => $caption
+			));
+		} else {
 			$this->_db->insert('posts', array(
 				'uid' => $uid,
 				'isrc' => $file

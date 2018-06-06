@@ -46,6 +46,7 @@ try {
 			`id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
 			`uid` int(11) NOT NULL,
 			`isrc` varchar(50) NOT NULL,
+			`caption` varchar (255),
 			`time` DATETIME DEFAULT NOW()
 		);"
 

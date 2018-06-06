@@ -24,7 +24,8 @@ function getUID() {
 
 export function save(e){
 	e.preventDefault();
+	let caption = document.getElementById('caption').value.trim();
 	let src = convert_64();
 	let uid = getUID();
-	addPost(src, uid);
+	addPost(src, uid, caption);
 }
