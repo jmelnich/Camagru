@@ -19,14 +19,22 @@ class PostModel extends Model {
 		}
 	}
 
-	public function get($starting_limit = null, $posts_per_page = null) {
-		if ($posts_per_page) {
-			$sql = "SELECT * FROM posts ORDER BY time DESC LIMIT " . $starting_limit . ',' . $posts_per_page;
-		} else {
-			$sql = "SELECT * FROM posts ORDER BY time DESC";
+	public function get($starting_limit = null, $posts_per_page = null, $hashtag = null) {
+		if ($hashtag) {
+			$hashtag = '#' . $hashtag;
+			$sql = "SELECT * FROM posts WHERE caption LIKE %{$hashtag}% ORDER BY time DESC LIMIT ";
 		}
+		// else if ($posts_per_page) {
+		// 	$sql = "SELECT * FROM posts ORDER BY time DESC LIMIT " . $starting_limit . ',' . $posts_per_page;
+		// } else {
+		// 	$sql = "SELECT * FROM posts ORDER BY time DESC";
+		// }
+		echo "<br/>";
+		echo $sql;
+		echo "<br/>";
 		$this->_db->query($sql);
 		$obj = $this->_db->results();
+		print_r($obj);
 		$array = json_decode(json_encode($obj), True);
 		return $array;
 	}
@@ -39,8 +47,13 @@ class PostModel extends Model {
 		return $post['id'];
 	}
 
-	public function count() {
-		$sql = "SELECT * FROM posts";
+	public function count($hashtag = null) {
+		if ($hashtag) {
+			$hashtag = '#' . $hashtag;
+			$sql = "SELECT * FROM posts WHERE caption LIKE %{$hashtag}%";
+		} else {
+			$sql = "SELECT * FROM posts";
+		}
 		$this->_db->query($sql);
 		return $this->_db->count();
 	}

@@ -22,9 +22,20 @@ if ($user->isLoggedIn()) {
 
 <?php
 $posts_per_page = 5;
+if(!isset($_GET['hash'])) {
+	$hashtag = 'all';
+} else {
+	$hashtag = $_GET['hash'];
+}
+
 $posts = new PostModel();
 /* get all posts to know how many pages for pagination I need */
-$number_f_posts = $posts->count();
+if($hashtag === 'all') {
+		$number_f_posts = $posts->count();
+} else {
+	$number_f_posts = $posts->count($hashtag);
+}
+echo "<br> Number of posts == ". $number_f_posts;
 $number_f_pages = ceil($number_f_posts/$posts_per_page);
 /* get info about my current page */
 if(!isset($_GET['page'])) {
@@ -33,18 +44,15 @@ if(!isset($_GET['page'])) {
 	$page = $_GET['page'];
 }
 
-// GET posts only by id I need
-//SELECT posts(1, 19, 3)...
-
-if(!isset($_GET['hash'])) {
-	$hashtag = 'all';
-} else {
-	$hashtag = $_GET['hash'];
-	echo $hashtag;
-}
 /* calculate my starting limit for sql request */
 $starting_limit = ($page - 1) * $posts_per_page;
-$paginated_posts = $posts->get($starting_limit, $posts_per_page);
+if ($hashtag === 'all') {
+	$paginated_posts = $posts->get($starting_limit, $posts_per_page);
+} else {
+	$paginated_posts = $posts->get($hashtag);
+}
+//$paginated_posts = $posts->get($starting_limit, $posts_per_page);
+print_r($paginated_posts);
 
 foreach ($paginated_posts as $post) {
 	$user_post = new UserModel($post['uid']);
