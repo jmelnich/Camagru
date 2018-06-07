@@ -1,5 +1,5 @@
 import { WIDTH, HEIGTH } from './constants.js';
-import { draw, save } from './canvas.js';
+import { drawImg, save } from './image.js';
 import { makeBtn, makeField } from './button.js';
 
 const form = document.getElementById('add-img');
@@ -40,7 +40,7 @@ function capture () {
     canvas.getContext('2d').drawImage(video, 0, 0, WIDTH, HEIGTH);
     if (document.getElementsByClassName('chosen')[0]) {
         const frame = document.getElementsByClassName('chosen')[0].src;
-        draw(frame);
+        drawImg(frame);
     }
     if (!document.getElementById('save')) {
         let parent = document.getElementsByClassName('canvas-container')[0];

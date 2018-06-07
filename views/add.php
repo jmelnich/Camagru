@@ -16,6 +16,7 @@ if ($user->isLoggedIn()) {
 				<ul class="filter-list" id="filter-list">
 					<li><img class="faded" src="public/img/filters/hearts.png" alt="owl"></li>
 					<li><img class="faded" src="public/img/filters/green.png" alt="owl"></li>
+					<li><img class="faded" src="public/img/filters/hat1.png" alt="owl"></li>
 					<li><img class="faded" src="public/img/filters/square_black.png" alt="black square"></li>
 				</ul>
 			<div class="img-action">
@@ -55,7 +56,6 @@ if ($user->isLoggedIn()) {
 </div>
 		<script src="public/js/filters.js"></script>
 		<script type="module" src="public/js/constants.js"></script>
-	    <script type="module" src="public/js/canvas.js"></script>
 	    <script type="module" src="public/js/camera.js"></script>
 	    <script type="module" src="public/js/button.js"></script>
 	    <script type="module" src="public/js/image.js"></script>
