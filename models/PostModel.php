@@ -21,7 +21,7 @@ class PostModel extends Model {
 
 	public function get($starting_limit = null, $posts_per_page = null, $hashtag = null) {
 		if ($hashtag) {
-			$sql = "SELECT * FROM posts WHERE caption LIKE  '%$hashtag%' ORDER BY time DESC";
+			$sql = "SELECT * FROM posts WHERE caption LIKE '%hash=$hashtag%' ORDER BY time DESC";
 		}
 		else if ($posts_per_page) {
 			$sql = "SELECT * FROM posts ORDER BY time DESC LIMIT " . $starting_limit . ',' . $posts_per_page;
@@ -40,9 +40,6 @@ class PostModel extends Model {
 		} else {
 			$sql = "SELECT * FROM posts";
 		}
-		// echo "sql in count = ";
-		// echo $sql;
-		// echo "<br>";
 		$this->_db->query($sql);
 		return $this->_db->count();
 	}
@@ -54,9 +51,8 @@ class PostModel extends Model {
 	}
 
 	public function getRecent($uid, $quantity) {
-		$this->_db->get('posts', array(
-			'uid', '=', $uid
-		));
+		$sql = "SELECT * FROM posts WHERE uid = {$uid} ORDER BY time DESC LIMIT 4";
+		$this->_db->query($sql);
 		$obj = $this->_db->results();
 		$array = json_decode(json_encode($obj), True);
 		return $array;

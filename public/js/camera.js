@@ -35,6 +35,8 @@ captureBtn.addEventListener('click', capture);
 function capture () {
     let canvasCont = document.getElementsByClassName('canvas-container')[0];
     canvasCont.style.display = 'block';
+    canvas.width = WIDTH;
+    canvas.height = HEIGTH;
     canvas.getContext('2d').drawImage(video, 0, 0, WIDTH, HEIGTH);
     if (document.getElementsByClassName('chosen')[0]) {
         const frame = document.getElementsByClassName('chosen')[0].src;
@@ -48,4 +50,3 @@ function capture () {
     }
 
 }
-

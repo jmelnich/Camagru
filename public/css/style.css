@@ -84,12 +84,8 @@ h3 {
   min-height: calc(100vh - 260px);
 }
 
-.container-capture{
-  min-width: 616px;
-}
-
-.container-gallery{
-  width: 400px;
+.container-capture, .container-gallery{
+  width: 50%;
 }
 
 
@@ -293,17 +289,17 @@ label {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    width: 600px;
-    height: 450px;
+    width: 500px;
+    height: auto;
     margin: 0 auto;
-    border: 8px dashed;
     color: #ccc;
     font-size: 26px;
     cursor: pointer;
+    position: relative;
 }
 
 #upload-preview {
-  min-width: 600px;
+  min-width: 500px;
   max-width: 100%;
   max-height: 100%;
   z-index: 2;
@@ -311,23 +307,18 @@ label {
 
 .camera-container {
   display: none;
-  width: 600px;
-  height: 450px;
-  margin: 0 auto;
-  color: #ccc;
-  border: 8px dashed;
-
 }
 
 #video, #canvas {
   display: block;
   margin: 0 auto;
-  width: 600px;
-  height: 450px;
+  width: 500px;
+  height: auto;
 }
 
 .editor-uploader-inner {
     position: absolute;
+    top: 5px;
 }
 
 .editor-uploader .fa-picture-o {
@@ -346,15 +337,15 @@ label {
     display: none;
 }
 
-.img-container, .camera-container, .canvas-container {
-  margin: 60px auto;
+.img-action {
+  display: flex;
 }
 
 .canvas-container {
   display: none;
 }
 
-.filter-list, .gallery-list {
+.gallery-list, .filter-list {
   display: flex;
   justify-content: space-around;
   margin: 60px 0;
@@ -486,8 +477,8 @@ img.thumb{
 }
 
 .canvas-container textarea {
-  width: 95%;
-  border: 1px solid #ccc;
+  width: 85%;
+  border-bottom: 1px solid #ccc;
   margin-top: 1px;
 }
 

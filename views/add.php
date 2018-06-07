@@ -9,34 +9,30 @@ if ($user->isLoggedIn()) {
 }?>
 <div class="container">
 	<div class="form">
-	<div class="container-flex-between">
+	<div class="container-flex">
 		<div class="container-capture">
 			<h2>Add something new!</h2>
 			<hr>
-
-				<h3>Choose a frame</h3>
 				<ul class="filter-list" id="filter-list">
 					<li><img class="faded" src="public/img/filters/hearts.png" alt="owl"></li>
 					<li><img class="faded" src="public/img/filters/green.png" alt="owl"></li>
 					<li><img class="faded" src="public/img/filters/square_black.png" alt="black square"></li>
 				</ul>
-
-			<div class="img-container" id="add-img">
-				<label class="editor-uploader" title="Upload picture">
-			    	<span class="editor-uploader-inner">
-			        <i class="fa fa-picture-o"></i>
-			        <i class="fa fa-plus"></i>
-			    	</span>
-			    	<img id="upload-preview" />
-			    	<input id="upload-btn" type="file" accept="image/*">
-				</label>
-			</div>
-			<div class="camera-container">
-				<video id="video"></video>
-				<button id="capture" class="btn btn-primary">Take snapshot</button>
-			</div>
-			<div class="canvas-container">
-				<canvas id="canvas" width="600" height="450"></canvas>
+			<div class="img-action">
+				<div class="img-container" id="add-img">
+					<label class="editor-uploader" title="Upload picture">
+				    	<span class="editor-uploader-inner">
+				        <i class="fa fa-picture-o"></i>
+				        <i class="fa fa-plus"></i>
+				    	</span>
+				    	<img id="upload-preview" />
+				    	<input id="upload-btn" type="file" accept="image/*">
+					</label>
+				</div>
+				<div class="camera-container">
+					<video id="video"></video>
+					<button id="capture" class="btn btn-primary">Take snapshot</button>
+				</div>
 			</div>
 		</div>
 
@@ -50,6 +46,9 @@ if ($user->isLoggedIn()) {
 				<li><img class="thumb" src="../<?php echo escape($rpost['isrc']);?>" alt=""></li>
 			<?php } ?>
 			</ul>
+			<div class="canvas-container">
+				<canvas id="canvas"></canvas>
+			</div>
 		</div>
 	</div>
 	</div>
