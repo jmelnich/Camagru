@@ -56,8 +56,6 @@ class DB {
 		return $this;
 	}
 
-
-
 	private function action($action, $table, $where = array()) {
 		/* check if we pass field, operator and value */
 		if(count($where) === 3) {

@@ -25,22 +25,13 @@ class Add extends Controller {
 		$this->base64_to_png($base_str, $output_file);
 		$post = new PostModel();
 		try {
-			if ($_POST['caption']) {
+			if (isset($_POST['caption'])) {
 				$caption = strip_tags($_POST['caption']);
-				if (strpos($caption, '#')) {
-					$hashes = getMatches($caption);
+				if (strpos($caption, '#') !== false) {
 					$caption = convertHash($caption);
-					// $post->add($uid, $output_file, $caption);
-					// $pid = $post->theLatest();
-					// //TODO:
-					// $hashtag = new HashModel();
-					// foreach ($hashes as $hashword) {
-					// 	$hashtag->add($hashword, $pid);
-					// }
-					//create table hastags
-					//get hash url
-					//grab all data where hashword === get
-					//display it
+					$post->add($uid, $output_file, $caption);
+				} else {
+					$post->add($uid, $output_file, $caption);
 				}
 			} else {
 				$post->add($uid, $output_file);

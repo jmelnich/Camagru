@@ -35,7 +35,10 @@ if($hashtag === 'all') {
 } else {
 	$number_f_posts = $posts->count($hashtag);
 }
-echo "<br> Number of posts == ". $number_f_posts;
+// echo "hashword == ";
+// echo $hashtag;
+// echo "<br> Number of posts == ". $number_f_posts;
+// echo "<br>";
 $number_f_pages = ceil($number_f_posts/$posts_per_page);
 /* get info about my current page */
 if(!isset($_GET['page'])) {
@@ -49,83 +52,99 @@ $starting_limit = ($page - 1) * $posts_per_page;
 if ($hashtag === 'all') {
 	$paginated_posts = $posts->get($starting_limit, $posts_per_page);
 } else {
-	$paginated_posts = $posts->get($hashtag);
+	$paginated_posts = $posts->get($starting_limit, $posts_per_page, $hashtag);
 }
+
 //$paginated_posts = $posts->get($starting_limit, $posts_per_page);
-print_r($paginated_posts);
+//print_r($paginated_posts);
+if ($paginated_posts) {
+	foreach ($paginated_posts as $post) {
+		$user_post = new UserModel($post['uid']);
+		$username_post = $user_post->data()->username;
+		$username_avatar = $user_post->data()->avatar;
 
-foreach ($paginated_posts as $post) {
-	$user_post = new UserModel($post['uid']);
-	$username_post = $user_post->data()->username;
-	$username_avatar = $user_post->data()->avatar;
-
- 	?>
-	<div id=<?php echo escape($post['id']);?> class="post">
-		<div class="post-header">
-			<img class="post-header-avatar" src="../<?php echo escape($username_avatar);?>" alt="">
-			<span class="post-header-username"><?php echo escape($username_post);?></span>
-			<div class="post-header-timestamp"><?php echo escape($post['time']);?></div>
-		</div>
-		<img class="post-img" src="../<?php echo escape($post['isrc']);?>" alt="">
-		<?php if ($uid) { ?>
-		<div class="post-footer">
-				<?php
-					if (!empty($post['caption'])) {
+	 	?>
+		<div id=<?php echo escape($post['id']);?> class="post">
+			<div class="post-header">
+				<img class="post-header-avatar" src="../<?php echo escape($username_avatar);?>" alt="">
+				<span class="post-header-username"><?php echo escape($username_post);?></span>
+				<div class="post-header-timestamp"><?php echo escape($post['time']);?></div>
+			</div>
+			<img class="post-img" src="../<?php echo escape($post['isrc']);?>" alt="">
+			<?php if ($uid) { ?>
+			<div class="post-footer">
+					<?php
+						if (!empty($post['caption'])) {
+							?>
+						<div class="caption"><p><?php echo wordwrap($post['caption'],70, "\n", false);?></p></div>
+						<?php
+						}
+					 ?>
+				<div class="post-footer-events">
+					<?php
+					$like = new LikeModel();
+					$quantity_likes = $like->getQuantity($post['id']);
+					?>
+					<span><?php echo escape($quantity_likes);?></span>
+					<?php
+					$isLiked = $like->isLiked($post['id'], $uid);
+					if ($isLiked) {
+					?>
+					<i value="<?php echo escape($post['id']);?>" class="fa fa-heart"></i>
+					<?php } else {?>
+					<i value="<?php echo escape($post['id']);?>" class="fa fa-heart-o"></i>
+					<?php } ?>
+					<?php if ($uid === $user_post->data()->id) {
 						?>
-					<div class="caption"><p><?php echo wordwrap($post['caption'],70, "\n", false);?></p></div>
+					<i value="<?php echo escape($post['id']);?>" class="fa fa-trash-o"></i>
+					<?php }?>
+				</div>
+			</div>
+			<div class="section-comments">
+				<ul>
+					<?php
+					$comments = new CommentModel();
+					$comments = $comments->get($post['id']);
+					foreach ($comments as $comment) {
+						$user_comment = new UserModel($comment['uid']);
+						$username_comment = $user_comment->data()->username;
+						$username_comment_avatar = $user_comment->data()->avatar;
+					?>
+						<li class="li-comment">
+							<div class="post-comment-header">
+								<img class="post-comment-header-avatar" src="../<?php echo escape($username_comment_avatar);?>" alt="">
+								<span class="post-header-username"><?php echo escape($username_comment);?></span>
+								<p class="comment"><?php echo escape($comment['text']);?></p>
+							</div>
+						</li>
 					<?php
 					}
-				 ?>
-			<div class="post-footer-events">
-				<?php
-				$like = new LikeModel();
-				$quantity_likes = $like->getQuantity($post['id']);
-				?>
-				<span><?php echo escape($quantity_likes);?></span>
-				<?php
-				$isLiked = $like->isLiked($post['id'], $uid);
-				if ($isLiked) {
-				?>
-				<i value="<?php echo escape($post['id']);?>" class="fa fa-heart"></i>
-				<?php } else {?>
-				<i value="<?php echo escape($post['id']);?>" class="fa fa-heart-o"></i>
-				<?php } ?>
-				<?php if ($uid === $user_post->data()->id) {
 					?>
-				<i value="<?php echo escape($post['id']);?>" class="fa fa-trash-o"></i>
-				<?php }?>
+				</ul>
 			</div>
+			<div class="post-comment">
+				<form value="<?php echo escape($post['id']);?>">
+					<textarea placeholder="Comment..."></textarea>
+					<button value="<?php echo escape($post['id']);?>" class="btn btn-primary">Comment</button>
+				</form>
+			</div>
+			<?php } ?>
 		</div>
-		<div class="section-comments">
-			<ul>
-				<?php
-				$comments = new CommentModel();
-				$comments = $comments->get($post['id']);
-				foreach ($comments as $comment) {
-					$user_comment = new UserModel($comment['uid']);
-					$username_comment = $user_comment->data()->username;
-					$username_comment_avatar = $user_comment->data()->avatar;
-				?>
-					<li class="li-comment">
-						<div class="post-comment-header">
-							<img class="post-comment-header-avatar" src="../<?php echo escape($username_comment_avatar);?>" alt="">
-							<span class="post-header-username"><?php echo escape($username_comment);?></span>
-							<p class="comment"><?php echo escape($comment['text']);?></p>
-						</div>
-					</li>
-				<?php
-				}
-				?>
-			</ul>
-		</div>
-		<div class="post-comment">
-			<form value="<?php echo escape($post['id']);?>">
-				<textarea placeholder="Comment..."></textarea>
-				<button value="<?php echo escape($post['id']);?>" class="btn btn-primary">Comment</button>
-			</form>
-		</div>
-		<?php } ?>
+		<?php
+	}
+} else {
+	?>
+
+	<div class="bg">
+	<div class="container">
+	    <div class='c'>
+	        <div class='_404'>YET</div>
+	        <hr>
+	        <div class='_1'>no posts found</div>
+	        <div class='_2'>BE THE FIRST TO POST HERE</div>
+	    </div>
 	</div>
+</div>
 	<?php
 }
 ?>
