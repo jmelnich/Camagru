@@ -1,3 +1,5 @@
+
+
 function sendRequest(url, data) {
 	let post = new XMLHttpRequest();
 	post.open("POST", url, true);
@@ -39,9 +41,24 @@ function getUID() {
 export function save(e){
     e.preventDefault();
     let caption = document.getElementById('caption').value.trim();
+    if (caption.length > 120) {
+    	error(document.getElementsByClassName('canvas-container')[0], 'Caption cant be so long');
+    	return;
+    }
     let src = convert_64();
     let uid = getUID();
     addPost(src, uid, caption);
+}
+
+function error(target, errormsg) {
+	if (target.parentNode.childNodes[3].innerHTML == errormsg){
+		return;
+	}
+	let p = document.createElement("p");
+	p.classList.add('error');
+	let node = document.createTextNode(errormsg);
+	p.appendChild(node);
+	target.parentNode.insertBefore(p, target.nextSibling);
 }
 
 export function addPost(src, uid, caption = null) {

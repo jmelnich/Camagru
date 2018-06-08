@@ -76,7 +76,7 @@ if ($paginated_posts) {
 					<?php
 						if (!empty($post['caption'])) {
 							?>
-						<div class="caption"><p><?php echo wordwrap($post['caption'],70, "\n", false);?></p></div>
+						<div class="caption"><p><?php echo ($post['caption']);?></p></div>
 						<?php
 						}
 					 ?>

@@ -28,6 +28,7 @@ class Add extends Controller {
 			if (isset($_POST['caption'])) {
 				$caption = strip_tags($_POST['caption']);
 				if (strpos($caption, '#') !== false) {
+					echo 'inside hash';
 					$caption = convertHash($caption);
 					$post->add($uid, $output_file, $caption);
 				} else {
