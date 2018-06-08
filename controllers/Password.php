@@ -46,7 +46,7 @@ class Password extends Controller {
 			} else {
 				echo "no session found";
 			}
-			Session::flash('change-password','<div class="success-manager" Your password has been changed. Now you can login.</div>');
+			Session::flash('change-password','<div class="success-manager">Your password has been changed. Now you can login.</div>');
 				header('Location: login');
 		} else {
 			?> <div class="error-manager">

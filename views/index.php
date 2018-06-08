@@ -124,7 +124,7 @@ if ($paginated_posts) {
 			</div>
 			<div class="post-comment">
 				<form value="<?php echo escape($post['id']);?>">
-					<textarea placeholder="Comment..."></textarea>
+					<textarea placeholder="Comment..." id="comment<?php echo $post['id'] ?>" name="comment<?php echo $post['id'] ?>"></textarea>
 					<button value="<?php echo escape($post['id']);?>" class="btn btn-primary">Comment</button>
 				</form>
 			</div>

@@ -42,7 +42,7 @@ $router->add('/faq', 'Faq');
 $router->add('/recovery', 'Recovery');
 $router->add('/password', 'Password');
 $router->add('/add', 'Add');
-
+$router->add('/setup', 'Setup');
 $router->run();
 
 if (Cookie::exists(Config::get('remember/cookie_name')) && !Session::exists(Config::get('session/session_name'))) {

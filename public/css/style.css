@@ -660,5 +660,9 @@ hr:after {
   .container-flex {
     justify-content: center;
   }
+
+  .container-capture, .container-gallery{
+    width: 100%;
+  }
 }
 

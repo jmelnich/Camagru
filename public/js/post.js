@@ -6,8 +6,8 @@ function sendRequest(url, data) {
 	post.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			let return_data = post.responseText;
-			console.log(return_data);
-			//window.location.href = 'index';
+			//console.log(return_data);
+			window.location.href = 'index';
 		}
 	}
 }

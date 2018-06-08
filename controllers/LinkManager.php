@@ -39,13 +39,13 @@ class LinkManager extends Controller {
     	if (!empty($token) && !empty($email)) {
     		$user = new UserModel();
     		if ($user->activate($email, $token)) {
-    			Session::flash('activation','Your email has been confirmed! Now you can login');
+    			Session::flash('activation','<div class="success-manager"> Your email has been confirmed! Now you can login </div>');
 				header('Location: ../../login');
     		} else {
                 echo '<br/> Link for activation not valid <br/>';
             }
     	} else {
-    		echo '<br/> Token or Email is empty... and link for activation not valid <br/>';
+    		echo '<div class="error-manager"><br/> Token or Email is empty... and link for activation not valid <br/><div>';
     	}
     }
 

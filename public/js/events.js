@@ -10,7 +10,6 @@ function checkEvent(e){
 	}
 	e.preventDefault();
 	let target = e.target;
-	console.log('caption');
 	let pid = target.getAttribute('value');
 	let uid = document.getElementById('uid').innerHTML;
 	switch (target.className) {
@@ -36,7 +35,9 @@ function checkEvent(e){
 			}
 			break;
 		case 'btn btn-primary':
-			let comment = (target.parentNode.childNodes[2].value).trim();
+			console.log(document.getElementById("comment" + pid));
+			let comment = (document.getElementById("comment" + pid).value).trim();
+			console.log(comment);
 			if (comment === '') {
 				error(target, 'This field cannot be empty');
 			} else if (comment.length > 200) {
