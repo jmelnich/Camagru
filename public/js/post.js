@@ -26,6 +26,24 @@ function sendRequestNorefresh(url, data) {
 	}
 }
 
+function convert_64() {
+    let src = canvas.toDataURL('image/png');
+    return src;
+}
+
+function getUID() {
+    let uid = document.getElementById('uid').innerHTML;
+    return uid;
+}
+
+export function save(e){
+    e.preventDefault();
+    let caption = document.getElementById('caption').value.trim();
+    let src = convert_64();
+    let uid = getUID();
+    addPost(src, uid, caption);
+}
+
 export function addPost(src, uid, caption = null) {
 	let url = "/add";
 	let data;

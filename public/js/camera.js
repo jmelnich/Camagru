@@ -1,6 +1,8 @@
-import { WIDTH, HEIGTH } from './constants.js';
-import { drawImg, save } from './image.js';
+import { WIDTH, HEIGTH} from './constants.js';
+import { save } from './post.js';
 import { makeBtn, makeField } from './button.js';
+import { Frame } from './Frame.js';
+import { Canvas } from './Canvas.js';
 
 const form = document.getElementById('add-img');
 const captureBtn = document.getElementById('capture');
@@ -33,14 +35,12 @@ navigator.mediaDevices.getUserMedia(constraints).then(function(mediaStream) {
 captureBtn.addEventListener('click', capture);
 
 function capture () {
-    let canvasCont = document.getElementsByClassName('canvas-container')[0];
-    canvasCont.style.display = 'block';
-    canvas.width = WIDTH;
-    canvas.height = HEIGTH;
-    canvas.getContext('2d').drawImage(video, 0, 0, WIDTH, HEIGTH);
+    let cnv = new Canvas();
+    cnv.activate();
+    cnv.draw(video);
     if (document.getElementsByClassName('chosen')[0]) {
-        const frame = document.getElementsByClassName('chosen')[0].src;
-        drawImg(frame);
+        let frame = new Frame();
+        cnv.draw(frame, frame.width, frame.height);
     }
     if (!document.getElementById('save')) {
         let parent = document.getElementsByClassName('canvas-container')[0];
@@ -48,5 +48,4 @@ function capture () {
         let saveBtn = makeBtn('save', parent);
         saveBtn.addEventListener('click', save);
     }
-
 }

@@ -14,10 +14,11 @@ if ($user->isLoggedIn()) {
 			<h2>Add something new!</h2>
 			<hr>
 				<ul class="filter-list" id="filter-list">
-					<li><img class="faded" src="public/img/filters/hearts.png" alt="owl"></li>
-					<li><img class="faded" src="public/img/filters/green.png" alt="owl"></li>
-					<li><img class="faded" src="public/img/filters/hat1.png" alt="owl"></li>
-					<li><img class="faded" src="public/img/filters/square_black.png" alt="black square"></li>
+					<li><img class="faded" src="public/img/filters/hearts.png" alt="hearts frame"></li>
+					<li><img class="faded" src="public/img/filters/lady-hat.png" alt="lady hat"></li>
+					<li><img class="faded" src="public/img/filters/hat1.png" alt="hat"></li>
+					<li><img class="faded" src="public/img/filters/magic-hat.png" alt="magic hat"></li>
+					<li><img class="faded" src="public/img/filters/deer.png" alt="deer horns"></li>
 				</ul>
 			<div class="img-action">
 				<div class="img-container" id="add-img">
@@ -60,4 +61,5 @@ if ($user->isLoggedIn()) {
 	    <script type="module" src="public/js/button.js"></script>
 	    <script type="module" src="public/js/image.js"></script>
 	    <script type="module" src="public/js/post.js"></script>
+	    <script type="module" src="public/js/Frame.js"></script>
 
